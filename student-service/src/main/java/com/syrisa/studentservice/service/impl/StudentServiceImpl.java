@@ -6,6 +6,8 @@ import com.syrisa.studentservice.exception.StudentNotNullException;
 import com.syrisa.studentservice.repository.AddressRepository;
 import com.syrisa.studentservice.repository.StudentRepository;
 import com.syrisa.studentservice.service.StudentService;
+import com.syrisa.studentservice.utility.generate.Generate;
+import com.syrisa.studentservice.utility.generate.NumberGenerate;
 import io.vavr.collection.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -26,10 +28,12 @@ public class StudentServiceImpl implements StudentService<Student> {
         try {
             if (student != null) {
                 Address address = student.getAddress();
+                address.setAddressID(NumberGenerate.generate.generate(5));
                 addressRepository.save(address);
+                student.setStudentID(NumberGenerate.generate.generate(10));
                 return studentRepository.save(student);
             }
-            throw new StudentNotNullException();
+            throw new StudentNotNullException("Student not null");
         } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
@@ -37,8 +41,15 @@ public class StudentServiceImpl implements StudentService<Student> {
     }
 
     @Override
-    public Student upadte(Student student) {
-        return null;
+    public Student update(Student student) {
+        try {
+            if (student!=null){
+                return student;
+            }
+            throw new StudentNotNullException("Student not null");
+        }catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        }
     }
 
     @Override

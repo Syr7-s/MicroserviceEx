@@ -23,12 +23,12 @@ public interface StudentMapper {
 
 
     @Mappings({
-            @Mapping(target = "studentID", source = "student.studentID"),
-            @Mapping(target = "studentName", source = "student.studentName"),
-            @Mapping(target = "studentLastName", source = "student.studentLastName"),
-            @Mapping(target = "studentGender", source = "student.studentGender"),
-            @Mapping(target = "studentBirthDate", source = "student.studentBirthDate"),
-            @Mapping(target = "address", source = "student.address")
+            @Mapping(target = "studentID", source = "studentDto.studentID"),
+            @Mapping(target = "studentName", source = "studentDto.studentName"),
+            @Mapping(target = "studentLastName", source = "studentDto.studentLastName"),
+            @Mapping(target = "studentGender", source = "studentDto.studentGender"),
+            @Mapping(target = "studentBirthDate", source = "studentDto.studentBirthDate"),
+            @Mapping(target = "address", source = "studentDto.address")
     })
     Student studentDtoToStudent(StudentDto studentDto);
 }
