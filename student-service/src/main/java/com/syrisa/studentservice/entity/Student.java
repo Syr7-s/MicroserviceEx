@@ -15,6 +15,6 @@ public class Student {
     private String studentLastName;
     private Gender studentGender;
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate accountCreationDate;
+    private LocalDate studentBirthDate;
     private Address address;
 }
