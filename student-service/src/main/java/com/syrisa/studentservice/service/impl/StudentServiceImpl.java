@@ -23,15 +23,15 @@ public class StudentServiceImpl implements StudentService<Student> {
 
     @Override
     public Student create(Student student) {
-        try{
-            if (student!=null){
+        try {
+            if (student != null) {
                 Address address = student.getAddress();
                 addressRepository.save(address);
                 return studentRepository.save(student);
             }
-            throw new StudentNotNullException("Exception");
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+            throw new StudentNotNullException();
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
 
     }
