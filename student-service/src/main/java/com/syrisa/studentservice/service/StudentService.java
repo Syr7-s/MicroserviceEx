@@ -6,6 +6,6 @@ public interface StudentService <T>{
     T create(T t);
     T upadte(T t);
     T getByID(Long id);
-    List<T> getlAll();
+    List<T> getAll();
     String delete(Long id);
 }
