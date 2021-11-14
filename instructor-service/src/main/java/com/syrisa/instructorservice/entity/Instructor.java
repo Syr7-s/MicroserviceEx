@@ -18,6 +18,7 @@ public class Instructor {
     private Gender instructorGender;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate instructorBirthDate;
+    private Address address;
 
 
 }
