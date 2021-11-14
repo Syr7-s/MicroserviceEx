@@ -1,12 +1,17 @@
 package com.syrisa.instructorservice.service.impl;
 
+import com.syrisa.instructorservice.entity.Address;
 import com.syrisa.instructorservice.entity.Instructor;
+import com.syrisa.instructorservice.exception.InstructorNotNullException;
 import com.syrisa.instructorservice.repository.AddressRepository;
 import com.syrisa.instructorservice.repository.InstructorRepository;
 import com.syrisa.instructorservice.service.InstructorService;
+import com.syrisa.instructorservice.utility.generate.impl.NumberGenerate;
 import io.vavr.collection.List;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @Transactional
@@ -20,7 +25,20 @@ public class InstructorServiceImpl implements InstructorService<Instructor> {
 
     @Override
     public Instructor create(Instructor instructor) {
-        return null;
+        try {
+            if (instructor!=null){
+                Address address = instructor.getAddress();
+                address.setAddressID(NumberGenerate.generate.generate(5));
+                addressRepository.save(address);
+                instructor.setInstructorID(NumberGenerate.generate.generate(10));
+                return instructorRepository.save(instructor);
+            }
+            throw new InstructorNotNullException("Instructor not null exception");
+
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        }
+
     }
 
     @Override
