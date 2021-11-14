@@ -91,6 +91,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>lecture-service</finalName>
     </build>
 
 </project>
