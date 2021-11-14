@@ -1,5 +1,6 @@
 package com.syrisa.studentservice.service.impl;
 
+import com.syrisa.studentservice.client.GenerateProcessClient;
 import com.syrisa.studentservice.entity.Address;
 import com.syrisa.studentservice.entity.Student;
 import com.syrisa.studentservice.exception.StudentNotNullException;
@@ -16,10 +17,12 @@ import org.springframework.web.server.ResponseStatusException;
 public class StudentServiceImpl implements StudentService<Student> {
     private final StudentRepository studentRepository;
     private final AddressRepository addressRepository;
+    private final GenerateProcessClient generateProcessClient;
 
-    public StudentServiceImpl(StudentRepository studentRepository, AddressRepository addressRepository) {
+    public StudentServiceImpl(StudentRepository studentRepository, AddressRepository addressRepository, GenerateProcessClient generateProcessClient) {
         this.studentRepository = studentRepository;
         this.addressRepository = addressRepository;
+        this.generateProcessClient = generateProcessClient;
     }
 
     @Override
@@ -27,9 +30,10 @@ public class StudentServiceImpl implements StudentService<Student> {
         try {
             if (student != null) {
                 Address address = student.getAddress();
-                address.setAddressID(NumberGenerate.generate.generate(5));
+                //address.setAddressID(NumberGenerate.generate.generate(5));
+                address.setAddressID(Long.parseLong(generateProcessClient.generateNumber(5)));
                 addressRepository.save(address);
-                student.setStudentID(NumberGenerate.generate.generate(10));
+                student.setStudentID(Long.parseLong(generateProcessClient.generateNumber(10)));
                 return studentRepository.save(student);
             }
             throw new StudentNotNullException("Student not null");
