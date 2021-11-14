@@ -1,10 +1,10 @@
 package com.syrisa.lectureservice.service.impl;
 
+import com.syrisa.lectureservice.client.GenerateProcessClient;
 import com.syrisa.lectureservice.entity.Lecture;
 import com.syrisa.lectureservice.exceptions.LectureNotNullException;
 import com.syrisa.lectureservice.repository.LectureRepository;
 import com.syrisa.lectureservice.service.LectureService;
-import com.syrisa.lectureservice.utilities.generate.impl.NumberGenerate;
 import io.vavr.collection.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,16 +16,18 @@ import org.springframework.web.server.ResponseStatusException;
 public class LectureServiceImpl implements LectureService<Lecture> {
 
     private final LectureRepository lectureRepository;
+    private final GenerateProcessClient generateProcessClient;
 
-    public LectureServiceImpl(LectureRepository lectureRepository) {
+    public LectureServiceImpl(LectureRepository lectureRepository, GenerateProcessClient generateProcessClient) {
         this.lectureRepository = lectureRepository;
+        this.generateProcessClient = generateProcessClient;
     }
 
     @Override
     public Lecture create(Lecture lecture) {
         try {
             if (lecture != null) {
-                lecture.setLectureID(NumberGenerate.generate.generate(4));
+                lecture.setLectureID(Integer.parseInt(generateProcessClient.generateNumber(4)));
                 return lectureRepository.save(lecture);
             }
             throw new LectureNotNullException("Lecture not created.");
