@@ -9,7 +9,7 @@ import java.util.Set;
 @Data
 @Builder
 public class LectureDto {
-    private Long lectureID;
+    private Integer lectureID;
     private String lectureCode;
     private String lectureName;
     public Lecture toLecture(){

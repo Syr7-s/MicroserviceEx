@@ -11,7 +11,7 @@ import java.util.Set;
 @Builder
 @Document
 public class Lecture {
-    private Long lectureID;
+    private Integer lectureID;
     private String lectureCode;
     private String lectureName;
 
