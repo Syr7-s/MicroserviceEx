@@ -91,6 +91,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>instructor-service</finalName>
     </build>
 
 </project>
