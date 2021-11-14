@@ -7,7 +7,6 @@ import com.syrisa.studentservice.exception.StudentNotNullException;
 import com.syrisa.studentservice.repository.AddressRepository;
 import com.syrisa.studentservice.repository.StudentRepository;
 import com.syrisa.studentservice.service.StudentService;
-import com.syrisa.studentservice.utility.generate.NumberGenerate;
 import io.vavr.collection.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
