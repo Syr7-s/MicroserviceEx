@@ -1,5 +1,6 @@
 package com.syrisa.lectureservice.dto;
 
+import com.syrisa.lectureservice.entity.Lecture;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,7 +12,11 @@ public class LectureDto {
     private Long lectureID;
     private String lectureCode;
     private String lectureName;
-    private String lectureInstructorID;
-    private int lectureStudentCount;
-    private Set<Long> studentID;
+    public Lecture toLecture(){
+        return Lecture.builder().
+                lectureID(this.lectureID)
+                .lectureCode(this.lectureCode)
+                .lectureName(this.lectureName)
+                .build();
+    }
 }

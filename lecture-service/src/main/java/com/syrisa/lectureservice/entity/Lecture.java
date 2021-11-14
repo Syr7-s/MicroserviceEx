@@ -1,5 +1,6 @@
 package com.syrisa.lectureservice.entity;
 
+import com.syrisa.lectureservice.dto.LectureDto;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,8 +14,13 @@ public class Lecture {
     private Long lectureID;
     private String lectureCode;
     private String lectureName;
-    private String lectureInstructorID;
-    private int lectureStudentCount;
-    private Set<Long> studentID;
 
+
+    public LectureDto toLectureDto(){
+        return LectureDto.builder().
+                lectureID(this.lectureID)
+                .lectureCode(this.lectureCode)
+                .lectureName(this.lectureName)
+                .build();
+    }
 }
