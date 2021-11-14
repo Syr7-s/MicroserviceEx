@@ -30,7 +30,6 @@ public class StudentServiceImpl implements StudentService<Student> {
         try {
             if (student != null) {
                 Address address = student.getAddress();
-                //address.setAddressID(NumberGenerate.generate.generate(5));
                 address.setAddressID(Long.parseLong(generateProcessClient.generateNumber(5)));
                 addressRepository.save(address);
                 student.setStudentID(Long.parseLong(generateProcessClient.generateNumber(10)));
