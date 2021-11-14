@@ -87,6 +87,7 @@
                 </configuration>
             </plugin>
         </plugins>
+	<finalName>generate-service</finalName>
     </build>
 
 </project>

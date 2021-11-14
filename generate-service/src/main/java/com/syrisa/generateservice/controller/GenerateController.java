@@ -1,6 +1,5 @@
 package com.syrisa.generateservice.controller;
 
-import com.sun.istack.internal.NotNull;
 import com.syrisa.generateservice.service.Generate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +16,7 @@ public class GenerateController {
     }
 
     @GetMapping("/generate/{size}")
-    public String generateNumber(@NotNull @PathVariable("size") int size){
+    public String generateNumber(@PathVariable("size") int size){
         return generate.generate(size);
     }
 }
