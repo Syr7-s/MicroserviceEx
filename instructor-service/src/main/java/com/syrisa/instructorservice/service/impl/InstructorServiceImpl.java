@@ -1,5 +1,6 @@
 package com.syrisa.instructorservice.service.impl;
 
+import com.syrisa.instructorservice.client.GenerateProcessClient;
 import com.syrisa.instructorservice.entity.Address;
 import com.syrisa.instructorservice.entity.Instructor;
 import com.syrisa.instructorservice.exception.InstructorNotNullException;
@@ -18,9 +19,11 @@ import org.springframework.web.server.ResponseStatusException;
 public class InstructorServiceImpl implements InstructorService<Instructor> {
     private final InstructorRepository instructorRepository;
     private final AddressRepository addressRepository;
-    public InstructorServiceImpl(InstructorRepository instructorRepository, AddressRepository addressRepository) {
+    private final GenerateProcessClient generateProcessClient;
+    public InstructorServiceImpl(InstructorRepository instructorRepository, AddressRepository addressRepository, GenerateProcessClient generateProcessClient) {
         this.instructorRepository = instructorRepository;
         this.addressRepository = addressRepository;
+        this.generateProcessClient = generateProcessClient;
     }
 
     @Override
@@ -28,9 +31,9 @@ public class InstructorServiceImpl implements InstructorService<Instructor> {
         try {
             if (instructor!=null){
                 Address address = instructor.getAddress();
-                address.setAddressID(NumberGenerate.generate.generate(5));
+                address.setAddressID(Long.parseLong(generateProcessClient.generateNumber(5)));
                 addressRepository.save(address);
-                instructor.setInstructorID(NumberGenerate.generate.generate(10));
+                instructor.setInstructorID(Long.parseLong(generateProcessClient.generateNumber(10)));
                 return instructorRepository.save(instructor);
             }
             throw new InstructorNotNullException("Instructor not null exception");
