@@ -1,6 +1,7 @@
 package com.syrisa.instructorservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.syrisa.instructorservice.dto.InstructorDto;
 import com.syrisa.instructorservice.utility.enums.gender.Gender;
 import lombok.Builder;
 import lombok.Data;
@@ -20,5 +21,14 @@ public class Instructor {
     private LocalDate instructorBirthDate;
     private Address address;
 
-
+    public InstructorDto toInstructorDto(){
+        return InstructorDto.builder()
+                .instructorID(this.instructorID)
+                .instructorName(this.instructorName)
+                .instructorLastName(this.instructorLastName)
+                .instructorGender(this.instructorGender)
+                .instructorBirthDate(this.instructorBirthDate)
+                .address(this.address)
+                .build();
+    }
 }
