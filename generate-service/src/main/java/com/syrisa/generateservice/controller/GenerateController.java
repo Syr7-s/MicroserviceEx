@@ -15,7 +15,7 @@ public class GenerateController {
         this.generate = generate;
     }
 
-    @GetMapping("/number/{size}")
+    @GetMapping("/generate/{size}")
     public String generateNumber(@PathVariable("size") int size){
         return generate.generate(size);
     }
