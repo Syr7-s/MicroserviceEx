@@ -1,7 +1,6 @@
 package com.syrisa.instructorservice.repository;
 
-import com.mongodb.client.MongoDatabase;
-import com.syrisa.instructorservice.entity.Instructor;
+import com.syrisa.instructorservice.entity.impl.Instructor;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

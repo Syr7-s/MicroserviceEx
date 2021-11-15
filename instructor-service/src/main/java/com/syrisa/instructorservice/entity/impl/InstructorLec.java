@@ -1,5 +1,6 @@
-package com.syrisa.instructorservice.entity;
+package com.syrisa.instructorservice.entity.impl;
 
+import com.syrisa.instructorservice.entity.Entity;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 @Data
 @Builder
 @Document
-public class InstructorLec {
+public class InstructorLec implements Entity {
     @Id
     private Long instructorLecID;
     @NotBlank(message = "lectureCode is mandatory")

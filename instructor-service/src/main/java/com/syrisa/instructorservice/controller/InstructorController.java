@@ -1,7 +1,6 @@
 package com.syrisa.instructorservice.controller;
 
 import com.syrisa.instructorservice.dto.InstructorDto;
-import com.syrisa.instructorservice.entity.Instructor;
 import com.syrisa.instructorservice.service.InstructorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,9 +12,9 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/api/v1/")
 public class InstructorController {
-    private final InstructorService<Instructor> instructorService;
+    private final InstructorService instructorService;
 
-    public InstructorController(InstructorService<Instructor> instructorService) {
+    public InstructorController(InstructorService instructorService) {
         this.instructorService = instructorService;
     }
 

@@ -1,7 +1,8 @@
-package com.syrisa.instructorservice.entity;
+package com.syrisa.instructorservice.entity.impl;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.syrisa.instructorservice.dto.InstructorDto;
+import com.syrisa.instructorservice.entity.Entity;
 import com.syrisa.instructorservice.utility.enums.gender.Gender;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 @Data
 @Builder
 @Document
-public class Instructor {
+public class Instructor implements Entity {
     private Long instructorID;
     private String instructorName;
     private String instructorLastName;

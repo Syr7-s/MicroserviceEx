@@ -1,13 +1,12 @@
 package com.syrisa.instructorservice.service.impl;
 
 import com.syrisa.instructorservice.client.GenerateProcessClient;
-import com.syrisa.instructorservice.entity.Address;
-import com.syrisa.instructorservice.entity.Instructor;
+import com.syrisa.instructorservice.entity.impl.Address;
+import com.syrisa.instructorservice.entity.impl.Instructor;
 import com.syrisa.instructorservice.exception.InstructorNotNullException;
 import com.syrisa.instructorservice.repository.AddressRepository;
 import com.syrisa.instructorservice.repository.InstructorRepository;
 import com.syrisa.instructorservice.service.InstructorService;
-import com.syrisa.instructorservice.utility.generate.impl.NumberGenerate;
 import io.vavr.collection.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @Transactional
-public class InstructorServiceImpl implements InstructorService<Instructor> {
+public class InstructorServiceImpl implements InstructorService {
     private final InstructorRepository instructorRepository;
     private final AddressRepository addressRepository;
     private final GenerateProcessClient generateProcessClient;

@@ -1,4 +1,9 @@
 package com.syrisa.instructorservice.service;
 
-public interface InstructorLecService {
+import com.syrisa.instructorservice.entity.impl.InstructorLec;
+
+public interface InstructorLecService extends Service<InstructorLec> {
+    InstructorLec getByID(Long id);
+
+    String delete(Long id);
 }

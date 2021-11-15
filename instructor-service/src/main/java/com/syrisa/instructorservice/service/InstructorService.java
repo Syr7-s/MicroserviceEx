@@ -1,11 +1,8 @@
 package com.syrisa.instructorservice.service;
 
-import io.vavr.collection.List;
+import com.syrisa.instructorservice.entity.impl.Instructor;
 
-public interface InstructorService <T>{
-    T create(T t);
-    T update(T t);
-    T getByID(Long id);
-    List<T> getAll();
+public interface InstructorService extends Service<Instructor>{
+    Instructor getByID(Long id);
     String delete(Long id);
 }

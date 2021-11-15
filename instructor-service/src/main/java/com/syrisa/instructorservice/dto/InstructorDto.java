@@ -1,8 +1,8 @@
 package com.syrisa.instructorservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.syrisa.instructorservice.entity.Address;
-import com.syrisa.instructorservice.entity.Instructor;
+import com.syrisa.instructorservice.entity.impl.Address;
+import com.syrisa.instructorservice.entity.impl.Instructor;
 import com.syrisa.instructorservice.utility.enums.gender.Gender;
 import lombok.Builder;
 import lombok.Data;
