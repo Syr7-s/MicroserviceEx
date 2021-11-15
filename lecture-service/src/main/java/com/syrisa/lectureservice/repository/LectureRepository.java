@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LectureRepository extends MongoRepository<Lecture,Integer> {
+    Lecture findLectureByLectureCode(String lectureCode);
 }
