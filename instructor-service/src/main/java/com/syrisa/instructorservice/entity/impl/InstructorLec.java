@@ -1,5 +1,6 @@
 package com.syrisa.instructorservice.entity.impl;
 
+import com.syrisa.instructorservice.annotations.StudentCapacity;
 import com.syrisa.instructorservice.entity.Entity;
 import lombok.Builder;
 import lombok.Data;
@@ -26,6 +27,7 @@ public class InstructorLec implements Entity {
     @NotBlank(message = "studentCapacity is mandatory")
     @Min(value = 10,message = "studentCapacity Min 10")
     @Max(value = 25,message = "studentCapacity Max 25")
+    @StudentCapacity
     private int studentCapacity;
 
     private LocalDate openDate;

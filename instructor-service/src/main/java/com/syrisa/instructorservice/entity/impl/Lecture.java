@@ -1,6 +1,8 @@
 package com.syrisa.instructorservice.entity.impl;
 
-public class Lecture {
+import com.syrisa.instructorservice.entity.Entity;
+
+public class Lecture implements Entity {
     private Integer lectureID;
     private String lectureCode;
     private String lectureName;
