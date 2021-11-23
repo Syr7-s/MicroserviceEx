@@ -67,7 +67,7 @@ public class LectureServiceImpl implements LectureService<Lecture> {
             }
             throw new LectureNotNullException("Lecture is not found");
         }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,exception.getMessage());
         }
 
 

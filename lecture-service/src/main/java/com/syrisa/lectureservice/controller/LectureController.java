@@ -4,11 +4,10 @@ import com.syrisa.lectureservice.dto.LectureDto;
 import com.syrisa.lectureservice.entity.Lecture;
 import com.syrisa.lectureservice.service.LectureService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import javax.ws.rs.Path;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -23,6 +22,15 @@ public class LectureController {
     public LectureDto create(@RequestBody LectureDto lectureDto){
         try {
             return lectureService.create(lectureDto.toLecture()).toLectureDto();
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        }
+    }
+
+    @GetMapping("/lecture/{lectureCode}")
+    public LectureDto getLectureByLectureCode(@PathVariable("lectureCode") String lectureCode){
+        try{
+            return lectureService.getLectureByLectureCode(lectureCode).toLectureDto();
         }catch (Exception exception){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
         }
