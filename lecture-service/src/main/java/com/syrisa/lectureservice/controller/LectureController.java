@@ -3,11 +3,14 @@ package com.syrisa.lectureservice.controller;
 import com.syrisa.lectureservice.dto.LectureDto;
 import com.syrisa.lectureservice.entity.Lecture;
 import com.syrisa.lectureservice.service.LectureService;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.ws.rs.Path;
+import javax.validation.constraints.Min;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -34,5 +37,13 @@ public class LectureController {
         }catch (Exception exception){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
         }
+    }
+
+    @GetMapping(value = "/books", params = {"page", "size"})
+    public List<LectureDto> getAllLecture(@Min(0) int page, @Min(1) int size){
+        return lectureService.getAll(PageRequest.of(page, size))
+                .stream()
+                .map(Lecture::toLectureDto)
+                .collect(Collectors.toList());
     }
 }
