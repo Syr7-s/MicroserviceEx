@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class InstructorLecServiceImpl implements InstructorLecService {
+
     @Override
     public InstructorLec getByID(Long id) {
         return null;
@@ -21,6 +22,7 @@ public class InstructorLecServiceImpl implements InstructorLecService {
 
     @Override
     public InstructorLec create(InstructorLec instructorLec) {
+
         return null;
     }
 

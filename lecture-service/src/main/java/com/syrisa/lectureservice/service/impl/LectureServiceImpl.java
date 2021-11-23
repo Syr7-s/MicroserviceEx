@@ -57,4 +57,19 @@ public class LectureServiceImpl implements LectureService<Lecture> {
     public String delete(Long id) {
         return null;
     }
+
+    @Override
+    public Lecture getLectureByLectureCode(String lectureCode) {
+        try{
+            Lecture lecture = lectureRepository.findLectureByLectureCode(lectureCode);
+            if (lecture != null) {
+                return lecture;
+            }
+            throw new LectureNotNullException("Lecture is not found");
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+
+    }
 }

@@ -8,4 +8,5 @@ public interface LectureService <T>{
     T getByID(Long id);
     List<T> getAll();
     String delete(Long id);
+    T getLectureByLectureCode(String lectureCode);
 }
