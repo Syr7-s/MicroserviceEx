@@ -37,6 +37,11 @@ public class InstructorLecServiceImpl implements InstructorLecService {
     }
 
     @Override
+    public InstructorLec getByLectureCode(String lectureCode) {
+        return instructorLecRepository.findByLectureCode(lectureCode).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Lecture not found"));
+    }
+
+    @Override
     public String delete(Long id) {
         try {
             InstructorLec instructorLec = getByID(id);

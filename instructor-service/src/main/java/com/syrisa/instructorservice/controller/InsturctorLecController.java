@@ -48,6 +48,15 @@ public class InsturctorLecController {
         }
     }
 
+    @GetMapping("/lectureCode/{lectureCode}")
+    public InstructorLecDto getById(@PathVariable("lectureCode") String lectureCode) {
+        try {
+            return instructorLecService.getByLectureCode(lectureCode).toInstructorLecDto();
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        }
+    }
+
     @GetMapping(value = "/lectures", params = {"page", "size"})
     public List<InstructorLecDto> getAll(@Min(0) int page, @Min(1) int size) {
         return instructorLecService.getAll(PageRequest.of(page, size))
