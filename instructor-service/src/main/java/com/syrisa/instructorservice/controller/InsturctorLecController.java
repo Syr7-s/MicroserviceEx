@@ -1,8 +1,6 @@
 package com.syrisa.instructorservice.controller;
 
-import com.syrisa.instructorservice.dto.InstructorDto;
 import com.syrisa.instructorservice.dto.InstructorLecDto;
-import com.syrisa.instructorservice.entity.impl.Instructor;
 import com.syrisa.instructorservice.entity.impl.InstructorLec;
 import com.syrisa.instructorservice.service.InstructorLecService;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/instructorLec")
 public class InsturctorLecController {
     private final InstructorLecService instructorLecService;
 
@@ -23,7 +21,7 @@ public class InsturctorLecController {
         this.instructorLecService = instructorLecService;
     }
 
-    @PostMapping("/instructor")
+    @PostMapping("/create")
     public InstructorLecDto create(@RequestBody InstructorLecDto instructorLecDto) {
         try {
             return instructorLecService.create(instructorLecDto.toInstructorLec()).toInstructorLecDto();

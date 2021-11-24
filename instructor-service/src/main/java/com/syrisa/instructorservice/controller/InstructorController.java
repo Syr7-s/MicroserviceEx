@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/instructor")
 public class InstructorController {
     private final InstructorService instructorService;
 
@@ -21,7 +21,7 @@ public class InstructorController {
         this.instructorService = instructorService;
     }
 
-    @PostMapping("/instructor")
+    @PostMapping("/create")
     public InstructorDto create(@RequestBody InstructorDto instructorDto) {
         try {
             return instructorService.create(instructorDto.toInstructor()).toInstructorDto();
