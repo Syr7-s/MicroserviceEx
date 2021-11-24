@@ -1,6 +1,7 @@
 package com.syrisa.instructorservice.entity.impl;
 
 import com.syrisa.instructorservice.annotations.StudentCapacity;
+import com.syrisa.instructorservice.dto.InstructorLecDto;
 import com.syrisa.instructorservice.entity.Entity;
 import lombok.Builder;
 import lombok.Data;
@@ -32,4 +33,14 @@ public class InstructorLec implements Entity {
 
     private LocalDate openDate;
 
+    public InstructorLecDto toInstructorLecDto(){
+        return  InstructorLecDto.builder()
+                .instructorLecID(this.instructorLecID)
+                .lectureCode(this.lectureCode)
+                .instructorID(this.instructorID)
+                .instructorNameSurname(this.instructorNameSurname)
+                .studentCapacity(this.studentCapacity)
+                .openDate(this.openDate)
+                .build();
+    }
 }
