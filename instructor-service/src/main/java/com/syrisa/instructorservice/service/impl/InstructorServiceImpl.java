@@ -47,21 +47,35 @@ public class InstructorServiceImpl implements InstructorService {
 
     @Override
     public Instructor update(Instructor instructor) {
-        return null;
+        try{
+            Instructor editedInstructor = getByID(instructor.getInstructorID());
+            if (editedInstructor!=null){
+                return instructorRepository.save(instructor);
+            }
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,instructor.getInstructorName()+" "+instructor.getInstructorLastName()+" named instructor not was defined on the system");
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        }
     }
 
     @Override
     public Instructor getByID(Long id) {
-        return null;
+        return instructorRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,id+" numbered instructor not found on the system"));
     }
 
     @Override
     public Page<Instructor> getAll(Pageable pageable) {
-        return null;
+        return instructorRepository.findAll(pageable);
     }
 
     @Override
     public String delete(Long id) {
-        return null;
+        try{
+            Instructor instructor = getByID(id);
+            instructorRepository.delete(instructor);
+            return instructor.getInstructorName()+" "+instructor.getInstructorLastName()+" named instructor was deleted.";
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        }
     }
 }
