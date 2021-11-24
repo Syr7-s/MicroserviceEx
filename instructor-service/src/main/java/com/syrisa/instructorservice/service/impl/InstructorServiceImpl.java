@@ -21,6 +21,7 @@ public class InstructorServiceImpl implements InstructorService {
     private final InstructorRepository instructorRepository;
     private final AddressRepository addressRepository;
     private final GenerateProcessClient generateProcessClient;
+
     public InstructorServiceImpl(InstructorRepository instructorRepository, AddressRepository addressRepository, GenerateProcessClient generateProcessClient) {
         this.instructorRepository = instructorRepository;
         this.addressRepository = addressRepository;
@@ -30,7 +31,7 @@ public class InstructorServiceImpl implements InstructorService {
     @Override
     public Instructor create(Instructor instructor) {
         try {
-            if (instructor!=null){
+            if (instructor != null) {
                 Address address = instructor.getAddress();
                 address.setAddressID(Long.parseLong(generateProcessClient.generateNumber(5)));
                 addressRepository.save(address);
@@ -39,28 +40,28 @@ public class InstructorServiceImpl implements InstructorService {
             }
             throw new InstructorNotNullException("Instructor not null exception");
 
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
 
     }
 
     @Override
     public Instructor update(Instructor instructor) {
-        try{
+        try {
             Instructor editedInstructor = getByID(instructor.getInstructorID());
-            if (editedInstructor!=null){
+            if (editedInstructor != null) {
                 return instructorRepository.save(instructor);
             }
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,instructor.getInstructorName()+" "+instructor.getInstructorLastName()+" named instructor not was defined on the system");
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, instructor.getInstructorName() + " " + instructor.getInstructorLastName() + " named instructor not was defined on the system");
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
     @Override
     public Instructor getByID(Long id) {
-        return instructorRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,id+" numbered instructor not found on the system"));
+        return instructorRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, id + " numbered instructor not found on the system"));
     }
 
     @Override
@@ -70,12 +71,12 @@ public class InstructorServiceImpl implements InstructorService {
 
     @Override
     public String delete(Long id) {
-        try{
+        try {
             Instructor instructor = getByID(id);
             instructorRepository.delete(instructor);
-            return instructor.getInstructorName()+" "+instructor.getInstructorLastName()+" named instructor was deleted.";
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+            return instructor.getInstructorName() + " " + instructor.getInstructorLastName() + " named instructor was deleted.";
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 }

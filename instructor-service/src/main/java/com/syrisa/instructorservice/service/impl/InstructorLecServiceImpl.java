@@ -33,46 +33,46 @@ public class InstructorLecServiceImpl implements InstructorLecService {
 
     @Override
     public InstructorLec getByID(Long id) {
-        return instructorLecRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"InstructorLec is not found"));
+        return instructorLecRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "InstructorLec is not found"));
     }
 
     @Override
     public String delete(Long id) {
-        try{
+        try {
             InstructorLec instructorLec = getByID(id);
             instructorLecRepository.delete(instructorLec);
-            return instructorLec.getLectureCode()+ "code Lecture was deleted.";
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+            return instructorLec.getLectureCode() + "code Lecture was deleted.";
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
 
     }
 
     @Override
     public InstructorLec create(InstructorLec instructorLec) {
-        try{
+        try {
             if (new ObjectContainerService<Lecture>().isNull.test(lectureProcessClient.getLectureCode(instructorLec.getLectureCode()))) {
                 Instructor instructor = instructorService.getByID(instructorLec.getInstructorLecID());
                 instructorLec.setInstructorNameSurname(instructor.getInstructorName() + " " + instructor.getInstructorLastName());
                 return instructorLecRepository.save(instructorLec);
             }
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
     @Override
     public InstructorLec update(InstructorLec instructorLec) {
-        try{
+        try {
             InstructorLec editedInstructor = getByID(instructorLec.getInstructorLecID());
-            if (!Objects.equals(editedInstructor.getLectureCode(), instructorLec.getLectureCode())){
+            if (!Objects.equals(editedInstructor.getLectureCode(), instructorLec.getLectureCode())) {
                 throw new Exception("Instructor Lecture Code must not edited.");
-            }else{
+            } else {
                 return instructorLecRepository.save(instructorLec);
             }
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
 
     }
