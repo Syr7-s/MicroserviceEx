@@ -45,7 +45,7 @@ public class StudentServiceImpl implements StudentService<Student> {
     public Student update(Student student) {
         try {
             if (student!=null){
-                return student;
+                return studentRepository.save(student);
             }
             throw new StudentNotNullException("Student not null");
         }catch (Exception exception) {

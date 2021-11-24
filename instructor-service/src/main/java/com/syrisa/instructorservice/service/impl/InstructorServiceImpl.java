@@ -8,6 +8,8 @@ import com.syrisa.instructorservice.repository.AddressRepository;
 import com.syrisa.instructorservice.repository.InstructorRepository;
 import com.syrisa.instructorservice.service.InstructorService;
 import io.vavr.collection.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,7 +56,7 @@ public class InstructorServiceImpl implements InstructorService {
     }
 
     @Override
-    public List<Instructor> getAll() {
+    public Page<Instructor> getAll(Pageable pageable) {
         return null;
     }
 

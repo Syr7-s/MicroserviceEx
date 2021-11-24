@@ -9,13 +9,17 @@ import com.syrisa.instructorservice.service.InstructorLecService;
 import com.syrisa.instructorservice.service.InstructorService;
 import com.syrisa.instructorservice.utility.checkobject.ObjectContainerService;
 import io.vavr.collection.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Objects;
+
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class InstructorLecServiceImpl implements InstructorLecService {
     private final LectureProcessClient lectureProcessClient;
     private final InstructorLecRepository instructorLecRepository;
@@ -24,18 +28,24 @@ public class InstructorLecServiceImpl implements InstructorLecService {
     public InstructorLecServiceImpl(LectureProcessClient lectureProcessClient, InstructorLecRepository instructorLecRepository, InstructorService instructorService) {
         this.lectureProcessClient = lectureProcessClient;
         this.instructorLecRepository = instructorLecRepository;
-
         this.instructorService = instructorService;
     }
 
     @Override
     public InstructorLec getByID(Long id) {
-        return null;
+        return instructorLecRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"InstructorLec is not found"));
     }
 
     @Override
     public String delete(Long id) {
-        return null;
+        try{
+            InstructorLec instructorLec = getByID(id);
+            instructorLecRepository.delete(instructorLec);
+            return instructorLec.getLectureCode()+ "code Lecture was deleted.";
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        }
+
     }
 
     @Override
@@ -54,11 +64,21 @@ public class InstructorLecServiceImpl implements InstructorLecService {
 
     @Override
     public InstructorLec update(InstructorLec instructorLec) {
-        return null;
+        try{
+            InstructorLec editedInstructor = getByID(instructorLec.getInstructorLecID());
+            if (!Objects.equals(editedInstructor.getLectureCode(), instructorLec.getLectureCode())){
+                throw new Exception("Instructor Lecture Code must not edited.");
+            }else{
+                return instructorLecRepository.save(instructorLec);
+            }
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        }
+
     }
 
     @Override
-    public List<InstructorLec> getAll() {
-        return null;
+    public Page<InstructorLec> getAll(Pageable pageable) {
+        return instructorLecRepository.findAll(pageable);
     }
 }
