@@ -8,6 +8,8 @@ import com.syrisa.studentservice.repository.AddressRepository;
 import com.syrisa.studentservice.repository.StudentRepository;
 import com.syrisa.studentservice.service.StudentService;
 import io.vavr.collection.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -44,27 +46,39 @@ public class StudentServiceImpl implements StudentService<Student> {
     @Override
     public Student update(Student student) {
         try {
-            if (student!=null){
+            if (student != null) {
                 return studentRepository.save(student);
             }
             throw new StudentNotNullException("Student not null");
-        }catch (Exception exception) {
+        } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
     @Override
     public Student getByID(Long id) {
-        return null;
+        try {
+            return studentRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,id+" numbered student not found on the system"));
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        }
     }
 
     @Override
-    public List<Student> getAll() {
-        return null;
+    public Page<Student> getAll(Pageable pageable) {
+        return studentRepository.findAll(pageable);
     }
 
     @Override
     public String delete(Long id) {
-        return null;
+        try{
+            Student student = getByID(id);
+            Address address = addressRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Address not found"));
+            addressRepository.delete(address);
+            studentRepository.delete(student);
+            return student.getStudentName()+" "+student.getStudentLastName()+ "named student was deleted.";
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        }
     }
 }
