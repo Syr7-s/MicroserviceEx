@@ -10,9 +10,9 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/api/v1")
 public class StudentController {
-    private final StudentService<Student> studentService;
+    private final StudentService studentService;
 
-    public StudentController(StudentService<Student> studentService) {
+    public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
