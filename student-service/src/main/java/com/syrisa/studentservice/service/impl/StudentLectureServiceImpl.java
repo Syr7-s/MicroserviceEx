@@ -3,7 +3,6 @@ package com.syrisa.studentservice.service.impl;
 import com.syrisa.studentservice.client.InstructorLecProcessClient;
 import com.syrisa.studentservice.entity.Student;
 import com.syrisa.studentservice.entity.StudentLecture;
-import com.syrisa.studentservice.entity.StudentLectureInfo;
 import com.syrisa.studentservice.repository.StudentLectureRepository;
 import com.syrisa.studentservice.service.StudentLectureInfoService;
 import com.syrisa.studentservice.service.StudentLectureService;
@@ -31,6 +30,11 @@ public class StudentLectureServiceImpl implements StudentLectureService {
 
     @Override
     public StudentLecture create(StudentLecture studentLecture) {
+        try{
+            Student student = studentService.getByID(studentLecture.getStudentNumber());
+        }catch (Exception exception){
+
+        }
         return null;
     }
 

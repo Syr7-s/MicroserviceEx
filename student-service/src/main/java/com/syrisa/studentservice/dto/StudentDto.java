@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @Builder
 public class StudentDto {
     private Long studentID;
+    private Long studentNumber;
     private String studentName;
     private String studentLastName;
     private Gender studentGender;

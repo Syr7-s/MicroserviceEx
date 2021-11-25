@@ -83,4 +83,10 @@ public class StudentServiceImpl implements StudentService {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
         }
     }
+
+
+    @Override
+    public Student findStudentByStudentNumber(Long studentNumber) {
+        return studentRepository.findStudentByStudentNumber(studentNumber).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Student not found"));
+    }
 }

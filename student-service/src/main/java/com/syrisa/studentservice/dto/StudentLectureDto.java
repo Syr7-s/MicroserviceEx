@@ -12,7 +12,7 @@ public class StudentLectureDto {
     private Long studentLecID;
     private LocalDate lastUpdated;
     private int status;
-    private String studentID;
+    private Long studentNumber;
     private String studentNameAndSurname;
     private String lectureCode;
     private String lectureName;
@@ -22,7 +22,7 @@ public class StudentLectureDto {
                 .studentLecID(this.studentLecID)
                 .lastUpdated(this.lastUpdated)
                 .status(this.status)
-                .studentID(this.studentID)
+                .studentNumber(this.studentNumber)
                 .studentNameAndSurname(this.studentNameAndSurname)
                 .lectureCode(this.lectureCode)
                 .lectureName(this.lectureName)
