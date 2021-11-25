@@ -1,6 +1,7 @@
 package com.syrisa.studentservice.entity;
 
 import com.syrisa.studentservice.dto.StudentLectureDto;
+import com.syrisa.studentservice.entity.impl.Entity;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 @Data
 @Builder
 @Document
-public class StudentLecture implements Entity{
+public class StudentLecture implements Entity {
     @Id
     private Long studentLecID;
     private LocalDate lastUpdated;

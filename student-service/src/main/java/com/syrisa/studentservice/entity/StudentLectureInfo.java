@@ -1,5 +1,6 @@
 package com.syrisa.studentservice.entity;
 
+import com.syrisa.studentservice.entity.impl.Entity;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -10,7 +11,7 @@ import java.util.List;
 @Data
 @Document
 @Builder
-public class StudentLectureInfo  implements Entity{
+public class StudentLectureInfo  implements Entity {
     @Id
     private Long studentLectureInfoID;
     private List<String> lectureCode;
