@@ -1,5 +1,6 @@
 package com.syrisa.studentservice.entity;
 
+import com.syrisa.studentservice.dto.StudentLectureDto;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -19,4 +20,16 @@ public class StudentLecture implements Entity{
     private String studentNameAndSurname;
     private String lectureCode;
     private String lectureName;
+
+    public StudentLectureDto toStudentLectureDto(){
+        return StudentLectureDto.builder()
+                .studentLecID(this.studentLecID)
+                .lastUpdated(this.lastUpdated)
+                .status(this.status)
+                .studentID(this.studentID)
+                .studentNameAndSurname(this.studentNameAndSurname)
+                .lectureCode(this.lectureCode)
+                .lectureName(this.lectureName)
+                .build();
+    }
 }
