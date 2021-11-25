@@ -20,4 +20,5 @@ public class StudentLecture implements Entity{
     private String lectureCode;
     private String lectureName;
 
+
 }
