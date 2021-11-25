@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @Document
 @Builder
-public class StudentLectureInfo {
+public class StudentLectureInfo  implements Entity{
     @Id
     private Long studentLectureInfoID;
     private List<String> lectureCode;

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Data
 @Builder
 @Document
-public class Student {
+public class Student implements Entity{
     private Long studentID;
     private String studentName;
     private String studentLastName;
