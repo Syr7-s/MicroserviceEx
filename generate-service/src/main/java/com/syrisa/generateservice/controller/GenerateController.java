@@ -19,4 +19,9 @@ public class GenerateController {
     public String generateNumber(@PathVariable("size") int size){
         return generate.generate(size);
     }
+
+    @GetMapping("/generate/{prefix}/{size}")
+    public String generateCode(@PathVariable("prefix") String prefix,@PathVariable("size") Short size){
+        return generate.generate(prefix,size);
+    }
 }

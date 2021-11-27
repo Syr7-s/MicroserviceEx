@@ -17,4 +17,9 @@ public class NumberGenerateService implements Generate<String>{
         }
         return builder.toString();
     }
+
+    @Override
+    public String generate(String prefix, Short size) {
+        return prefix + generate(size);
+    }
 }
