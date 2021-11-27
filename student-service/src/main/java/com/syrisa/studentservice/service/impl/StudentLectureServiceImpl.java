@@ -32,6 +32,7 @@ public class StudentLectureServiceImpl implements StudentLectureService {
     public StudentLecture create(StudentLecture studentLecture) {
         try{
             Student student = studentService.getByID(studentLecture.getStudentNumber());
+
         }catch (Exception exception){
 
         }
