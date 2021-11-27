@@ -4,11 +4,15 @@ import com.syrisa.studentservice.entity.InstructorLec;
 import com.syrisa.studentservice.entity.StudentLecture;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
+@Getter
+@Setter
 @Builder
 public class StudentLectureDto {
     private Long studentLecID;

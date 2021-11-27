@@ -1,6 +1,8 @@
 package com.syrisa.studentservice.service.impl;
 
 import com.syrisa.studentservice.client.InstructorLecProcessClient;
+import com.syrisa.studentservice.dto.InstructorLecDto;
+import com.syrisa.studentservice.entity.InstructorLec;
 import com.syrisa.studentservice.entity.Student;
 import com.syrisa.studentservice.entity.StudentLecture;
 import com.syrisa.studentservice.repository.StudentLectureRepository;
@@ -31,8 +33,8 @@ public class StudentLectureServiceImpl implements StudentLectureService {
     @Override
     public StudentLecture create(StudentLecture studentLecture) {
         try{
-            Student student = studentService.getByID(studentLecture.getStudentNumber());
-
+            /*Student student = studentService.getByID(studentLecture.getStudentNumber());
+            InstructorLec instructorLec = instructorLecProcessClient.getById()*/
         }catch (Exception exception){
 
         }
@@ -57,5 +59,10 @@ public class StudentLectureServiceImpl implements StudentLectureService {
     @Override
     public String delete(Long id) {
         return null;
+    }
+
+    @Override
+    public StudentLecture findStudentLectureByStudentNumber(Long studentNumber) {
+        return studentLectureRepository.findStudentLectureByStudentNumber(studentNumber);
     }
 }

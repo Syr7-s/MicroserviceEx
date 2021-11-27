@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StudentLectureRepository extends MongoRepository<StudentLecture,Long> {
+    StudentLecture findStudentLectureByStudentNumber(Long studentNumber);
 }

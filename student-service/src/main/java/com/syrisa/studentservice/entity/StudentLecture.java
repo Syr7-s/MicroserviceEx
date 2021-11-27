@@ -2,15 +2,17 @@ package com.syrisa.studentservice.entity;
 
 import com.syrisa.studentservice.dto.StudentLectureDto;
 import com.syrisa.studentservice.entity.impl.Entity;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Document
 public class StudentLecture implements Entity {
@@ -21,7 +23,7 @@ public class StudentLecture implements Entity {
     private Long studentNumber;
     private String studentNameAndSurname;
     private List<InstructorLec> studentLectures;
-    
+
     public StudentLectureDto toStudentLectureDto(){
         return StudentLectureDto.builder()
                 .studentLecID(this.studentLecID)
