@@ -79,4 +79,5 @@ public class StudentLectureInfoServiceImpl implements StudentLectureInfoService 
 
     private final Predicate<List<InstructorLec>> isStudentLectureCountLessThan = (instructorLectures -> instructorLectures.size() < 2);
 
+
 }

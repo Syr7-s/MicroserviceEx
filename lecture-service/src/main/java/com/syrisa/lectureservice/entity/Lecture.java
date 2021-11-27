@@ -16,13 +16,14 @@ public class Lecture {
     private Integer lectureID;
     private String lectureCode;
     private String lectureName;
-
+    private Integer lectureCapacity;
 
     public LectureDto toLectureDto(){
         return LectureDto.builder().
                 lectureID(this.lectureID)
                 .lectureCode(this.lectureCode)
                 .lectureName(this.lectureName)
+                .lectureCapacity(this.lectureCapacity)
                 .build();
     }
 }
