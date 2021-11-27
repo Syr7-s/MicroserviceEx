@@ -49,12 +49,7 @@ public class StudentLectureInfoServiceImpl implements StudentLectureInfoService 
                 instructorLectures = new ArrayList<>();
                 Student student = studentService.getByID(studentLectureInfo.getStudentNumber());
                 instructorLec = instructorLecProcessClient.getById(studentLectureInfo.getStudentLectureCode()).toInstructorLec();
-                studentLecture.setStudentLecID(Long.valueOf(generateProcessClient.generateNumber(6)));
-                studentLecture.setLastUpdated(LocalDate.now());
-                studentLecture.setStudentNumber(student.getStudentNumber());
-                studentLecture.setStudentNameAndSurname(student.getStudentName() + " " + student.getStudentLastName());
-                instructorLectures.add(instructorLec);
-                studentLecture.setStudentLectures(instructorLectures);
+                setStudentLectureInfo(studentLecture, instructorLectures, instructorLec, student);
             } else {
                 instructorLec = instructorLecProcessClient.getById(studentLectureInfo.getStudentLectureCode()).toInstructorLec();
                 instructorLectures = studentLecture.getStudentLectures();
@@ -65,10 +60,21 @@ public class StudentLectureInfoServiceImpl implements StudentLectureInfoService 
                     throw new StudentExceedLectureBoundsException("The student can choose a maximum of 2 courses.");
                 }
             }
+            instructorLec.setStudentCapacity(instructorLec.getStudentCapacity() + 1);
+            instructorLecProcessClient.update(instructorLec.toInstructorLecDto());
             return studentLectureRepository.save(studentLecture);
         } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
+    }
+
+    private void setStudentLectureInfo(StudentLecture studentLecture, List<InstructorLec> instructorLectures, InstructorLec instructorLec, Student student) {
+        studentLecture.setStudentLecID(Long.valueOf(generateProcessClient.generateNumber(6)));
+        studentLecture.setLastUpdated(LocalDate.now());
+        studentLecture.setStudentNumber(student.getStudentNumber());
+        studentLecture.setStudentNameAndSurname(student.getStudentName() + " " + student.getStudentLastName());
+        instructorLectures.add(instructorLec);
+        studentLecture.setStudentLectures(instructorLectures);
     }
 
     private final Predicate<List<InstructorLec>> isStudentLectureCountLessThan = (instructorLectures -> instructorLectures.size() < 2);
