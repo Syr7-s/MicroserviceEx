@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
@@ -19,9 +20,8 @@ public class StudentLecture implements Entity {
     private int status;
     private Long studentNumber;
     private String studentNameAndSurname;
-    private String lectureCode;
-    private String lectureName;
-
+    private List<InstructorLec> studentLectures;
+    
     public StudentLectureDto toStudentLectureDto(){
         return StudentLectureDto.builder()
                 .studentLecID(this.studentLecID)
@@ -29,8 +29,7 @@ public class StudentLecture implements Entity {
                 .status(this.status)
                 .studentNumber(this.studentNumber)
                 .studentNameAndSurname(this.studentNameAndSurname)
-                .lectureCode(this.lectureCode)
-                .lectureName(this.lectureName)
+                .studentLectures(this.studentLectures)
                 .build();
     }
 }

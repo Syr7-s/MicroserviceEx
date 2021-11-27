@@ -1,10 +1,12 @@
 package com.syrisa.studentservice.dto;
 
+import com.syrisa.studentservice.entity.InstructorLec;
 import com.syrisa.studentservice.entity.StudentLecture;
 import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
@@ -14,8 +16,7 @@ public class StudentLectureDto {
     private int status;
     private Long studentNumber;
     private String studentNameAndSurname;
-    private String lectureCode;
-    private String lectureName;
+    private List<InstructorLec> studentLectures;
 
     public StudentLecture toStudentLecture(){
         return StudentLecture.builder()
@@ -24,8 +25,7 @@ public class StudentLectureDto {
                 .status(this.status)
                 .studentNumber(this.studentNumber)
                 .studentNameAndSurname(this.studentNameAndSurname)
-                .lectureCode(this.lectureCode)
-                .lectureName(this.lectureName)
+                .studentLectures(this.studentLectures)
                 .build();
     }
 
