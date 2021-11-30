@@ -42,12 +42,21 @@ public class LectureServiceImpl implements LectureService<Lecture> {
 
     @Override
     public Lecture update(Lecture lecture) {
-        return null;
+        try {
+            Lecture editedLecture = getByID(lecture.getLectureID());
+            if (editedLecture != null) {
+                return lectureRepository.save(lecture);
+            }
+            throw new Exception("Not found");
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        }
     }
 
     @Override
-    public Lecture getByID(Long id) {
-        return null;
+    public Lecture getByID(Integer id) {
+        return lectureRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, id + " lecture not found."));
     }
 
     @Override
@@ -62,14 +71,14 @@ public class LectureServiceImpl implements LectureService<Lecture> {
 
     @Override
     public Lecture getLectureByLectureCode(String lectureCode) {
-        try{
+        try {
             Lecture lecture = lectureRepository.findLectureByLectureCode(lectureCode);
             if (lecture != null) {
                 return lecture;
             }
             throw new LectureNotNullException("Lecture is not found");
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
         }
 
 

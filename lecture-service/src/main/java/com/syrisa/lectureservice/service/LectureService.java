@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 public interface LectureService <T>{
     T create(T t);
     T update(T t);
-    T getByID(Long id);
+    T getByID(Integer id);
     Page<T> getAll(Pageable pageable);
     String delete(Long id);
     T getLectureByLectureCode(String lectureCode);
