@@ -11,8 +11,10 @@ import com.syrisa.studentservice.service.StudentLectureService;
 import com.syrisa.studentservice.service.StudentService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -33,8 +35,7 @@ public class StudentLectureServiceImpl implements StudentLectureService {
     @Override
     public StudentLecture create(StudentLecture studentLecture) {
         try{
-            /*Student student = studentService.getByID(studentLecture.getStudentNumber());
-            InstructorLec instructorLec = instructorLecProcessClient.getById()*/
+
         }catch (Exception exception){
 
         }
@@ -48,12 +49,12 @@ public class StudentLectureServiceImpl implements StudentLectureService {
 
     @Override
     public StudentLecture getByID(Long id) {
-        return null;
+        return studentLectureRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Not Found"));
     }
 
     @Override
     public Page<StudentLecture> getAll(Pageable pageable) {
-        return null;
+        return studentLectureRepository.findAll(pageable);
     }
 
     @Override
