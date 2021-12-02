@@ -11,6 +11,7 @@ import com.syrisa.studentservice.repository.StudentLectureRepository;
 import com.syrisa.studentservice.service.StudentLectureInfoService;
 import com.syrisa.studentservice.service.StudentLectureService;
 import com.syrisa.studentservice.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,15 +27,16 @@ import java.util.function.Predicate;
 public class StudentLectureInfoServiceImpl implements StudentLectureInfoService {
     private final StudentService studentService;
     private final InstructorLecProcessClient instructorLecProcessClient;
-    private final StudentLectureService studentLectureService;
+    @Autowired
+    private  StudentLectureService studentLectureService;
     private final GenerateProcessClient generateProcessClient;
     private final StudentLectureRepository studentLectureRepository;
 
 
-    public StudentLectureInfoServiceImpl(StudentService studentService, InstructorLecProcessClient instructorLecProcessClient, StudentLectureService studentLectureService, GenerateProcessClient generateProcessClient, StudentLectureRepository studentLectureRepository) {
+    public StudentLectureInfoServiceImpl(StudentService studentService, InstructorLecProcessClient instructorLecProcessClient,GenerateProcessClient generateProcessClient, StudentLectureRepository studentLectureRepository) {
         this.studentService = studentService;
         this.instructorLecProcessClient = instructorLecProcessClient;
-        this.studentLectureService = studentLectureService;
+
         this.generateProcessClient = generateProcessClient;
         this.studentLectureRepository = studentLectureRepository;
     }
