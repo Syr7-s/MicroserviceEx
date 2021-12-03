@@ -1,7 +1,8 @@
-package com.syrisa.studentservice.entity;
+package com.syrisa.studentlectureservice.dto;
 
-import com.syrisa.studentservice.dto.InstructorLecDto;
-import com.syrisa.studentservice.entity.impl.Entity;
+
+
+import com.syrisa.studentlectureservice.entity.impl.InstructorLec;
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,15 +10,15 @@ import java.time.LocalDate;
 
 @Data
 @Builder
-public class InstructorLec implements Entity {
+public class InstructorLecDto {
     private Long instructorLecID;
     private String lectureCode;
     private String instructorID;
     private String instructorNameSurname;
     private int studentCapacity;
     private LocalDate openDate;
-    public InstructorLecDto toInstructorLecDto(){
-        return  InstructorLecDto.builder()
+    public InstructorLec toInstructorLec(){
+        return  InstructorLec.builder()
                 .instructorLecID(this.instructorLecID)
                 .lectureCode(this.lectureCode)
                 .instructorID(this.instructorID)
@@ -26,4 +27,5 @@ public class InstructorLec implements Entity {
                 .openDate(this.openDate)
                 .build();
     }
+
 }

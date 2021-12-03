@@ -1,14 +1,9 @@
-package com.syrisa.studentservice.service.impl;
+package com.syrisa.studentlectureservice.service.impl;
 
-import com.syrisa.studentservice.client.InstructorLecProcessClient;
-import com.syrisa.studentservice.dto.InstructorLecDto;
-import com.syrisa.studentservice.entity.InstructorLec;
-import com.syrisa.studentservice.entity.Student;
-import com.syrisa.studentservice.entity.StudentLecture;
-import com.syrisa.studentservice.repository.StudentLectureRepository;
-import com.syrisa.studentservice.service.StudentLectureInfoService;
-import com.syrisa.studentservice.service.StudentLectureService;
-import com.syrisa.studentservice.service.StudentService;
+import com.syrisa.studentlectureservice.entity.impl.StudentLecture;
+import com.syrisa.studentlectureservice.repository.StudentLectureRepository;
+import com.syrisa.studentlectureservice.service.StudentLectureInfoService;
+import com.syrisa.studentlectureservice.service.StudentLectureService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -21,14 +16,10 @@ import org.springframework.web.server.ResponseStatusException;
 public class StudentLectureServiceImpl implements StudentLectureService {
     private final StudentLectureRepository studentLectureRepository;
     private final StudentLectureInfoService studentLectureInfoService;
-    private final StudentService studentService;
-    private final InstructorLecProcessClient instructorLecProcessClient;
 
-    public StudentLectureServiceImpl(StudentLectureRepository studentLectureRepository, StudentLectureInfoService studentLectureInfoService, StudentService studentService, InstructorLecProcessClient instructorLecProcessClient) {
+    public StudentLectureServiceImpl(StudentLectureRepository studentLectureRepository, StudentLectureInfoService studentLectureInfoService) {
         this.studentLectureRepository = studentLectureRepository;
         this.studentLectureInfoService = studentLectureInfoService;
-        this.studentService = studentService;
-        this.instructorLecProcessClient = instructorLecProcessClient;
     }
 
 

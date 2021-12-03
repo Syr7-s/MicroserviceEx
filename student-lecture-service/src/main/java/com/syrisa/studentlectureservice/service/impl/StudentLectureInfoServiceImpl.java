@@ -1,49 +1,34 @@
-package com.syrisa.studentservice.service.impl;
+package com.syrisa.studentlectureservice.service.impl;
 
-import com.syrisa.studentservice.client.GenerateProcessClient;
-import com.syrisa.studentservice.client.InstructorLecProcessClient;
-import com.syrisa.studentservice.entity.InstructorLec;
-import com.syrisa.studentservice.entity.Student;
-import com.syrisa.studentservice.entity.StudentLecture;
-import com.syrisa.studentservice.entity.StudentLectureInfo;
-import com.syrisa.studentservice.exception.StudentExceedLectureBoundsException;
-import com.syrisa.studentservice.repository.StudentLectureRepository;
-import com.syrisa.studentservice.service.StudentLectureInfoService;
-import com.syrisa.studentservice.service.StudentLectureService;
-import com.syrisa.studentservice.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import com.syrisa.studentlectureservice.client.GenerateProcessClient;
+import com.syrisa.studentlectureservice.entity.impl.StudentLecture;
+import com.syrisa.studentlectureservice.entity.impl.StudentLectureInfo;
+import com.syrisa.studentlectureservice.repository.StudentLectureRepository;
+import com.syrisa.studentlectureservice.service.StudentLectureInfoService;
+import com.syrisa.studentlectureservice.service.StudentLectureService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class StudentLectureInfoServiceImpl implements StudentLectureInfoService {
-    private final StudentService studentService;
-    private final InstructorLecProcessClient instructorLecProcessClient;
-    @Autowired
-    private  StudentLectureService studentLectureService;
+
+
+
+    private final StudentLectureService studentLectureService;
     private final GenerateProcessClient generateProcessClient;
     private final StudentLectureRepository studentLectureRepository;
 
 
-    public StudentLectureInfoServiceImpl(StudentService studentService, InstructorLecProcessClient instructorLecProcessClient,GenerateProcessClient generateProcessClient, StudentLectureRepository studentLectureRepository) {
-        this.studentService = studentService;
-        this.instructorLecProcessClient = instructorLecProcessClient;
-
+    public StudentLectureInfoServiceImpl(StudentLectureService studentLectureService, GenerateProcessClient generateProcessClient, StudentLectureRepository studentLectureRepository) {
+        this.studentLectureService = studentLectureService;
         this.generateProcessClient = generateProcessClient;
         this.studentLectureRepository = studentLectureRepository;
     }
 
     @Override
     public StudentLecture create(StudentLectureInfo studentLectureInfo) {
-        try {
+      /*  try {
             StudentLecture studentLecture = studentLectureService.findStudentLectureByStudentNumber(studentLectureInfo.getStudentNumber());
             List<InstructorLec> instructorLectures = null;
             InstructorLec instructorLec = null;
@@ -67,10 +52,11 @@ public class StudentLectureInfoServiceImpl implements StudentLectureInfoService 
             return studentLectureRepository.save(studentLecture);
         } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
-        }
+        }*/
+        return null;
     }
 
-    private void setStudentLectureInfo(StudentLecture studentLecture, List<InstructorLec> instructorLectures, InstructorLec instructorLec, Student student) {
+    /*private void setStudentLectureInfo(StudentLecture studentLecture, List<InstructorLec> instructorLectures, InstructorLec instructorLec, Student student) {
         studentLecture.setStudentLecID(Long.valueOf(generateProcessClient.generateNumber(6)));
         studentLecture.setLastUpdated(LocalDate.now());
         studentLecture.setStudentNumber(student.getStudentNumber());
@@ -80,6 +66,6 @@ public class StudentLectureInfoServiceImpl implements StudentLectureInfoService 
     }
 
     private final Predicate<List<InstructorLec>> isStudentLectureCountLessThan = (instructorLectures -> instructorLectures.size() < 2);
-
+*/
 
 }

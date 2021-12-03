@@ -1,6 +1,6 @@
-package com.syrisa.studentservice.repository;
+package com.syrisa.studentlectureservice.repository;
 
-import com.syrisa.studentservice.entity.StudentLecture;
+import com.syrisa.studentlectureservice.entity.impl.StudentLecture;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
