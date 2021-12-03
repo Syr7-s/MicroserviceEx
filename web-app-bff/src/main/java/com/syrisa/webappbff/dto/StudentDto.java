@@ -24,6 +24,7 @@ public class StudentDto {
     public Student toStudent(){
         return Student.builder()
                 .studentID(this.studentID)
+                .studentNumber(this.studentNumber)
                 .studentName(this.studentName)
                 .studentLastName(this.studentLastName)
                 .studentGender(this.studentGender)

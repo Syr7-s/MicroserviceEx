@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.util.Locale;
+
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class StudentServiceImpl implements StudentService {
@@ -35,7 +38,10 @@ public class StudentServiceImpl implements StudentService {
                 Address address = student.getAddress();
                 address.setAddressID(Long.parseLong(generateProcessClient.generateNumber(5)));
                 addressRepository.save(address);
-                student.setStudentID(Long.parseLong(generateProcessClient.generateNumber(10)));
+                student.setStudentID(Long.parseLong(generateProcessClient.generateNumber(6)));
+                Long number = Long.parseLong(String.valueOf(LocalDate.now().getYear()).substring(2) + Long.parseLong(generateProcessClient.generateNumber(10)));
+                System.out.println("Number: "+number);
+                student.setStudentNumber(number);
                 return studentRepository.save(student);
             }
             throw new StudentNotNullException("Student not null");
