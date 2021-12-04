@@ -1,0 +1,73 @@
+package com.syrisa.webappbff.service.impl;
+
+
+import com.syrisa.webappbff.client.LectureServiceClient;
+import com.syrisa.webappbff.dto.LectureDto;
+import com.syrisa.webappbff.entity.Lecture;
+import com.syrisa.webappbff.service.LectureService;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class LectureServiceImpl implements LectureService {
+
+    private final LectureServiceClient lectureServiceClient;
+
+    public LectureServiceImpl(LectureServiceClient lectureServiceClient) {
+        this.lectureServiceClient = lectureServiceClient;
+    }
+
+    @Override
+    public Lecture create(Lecture lecture) {
+        try {
+            return lectureServiceClient.create(lecture.toLectureDto()).toLecture();
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        }
+
+    }
+
+    @Override
+    public Lecture update(Lecture lecture) {
+        try {
+
+            throw new Exception("Not found");
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        }
+    }
+
+    @Override
+    public String delete(Integer id) {
+        return null;
+    }
+
+    @Override
+    public Lecture getById(Integer id) {
+        return null;
+    }
+
+
+
+    @Override
+    public List<Lecture> getAll(int min, int max) {
+        return lectureServiceClient.getAllLecture(min,max).stream()
+                .map(LectureDto::toLecture)
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public Lecture getLectureByLectureCode(String lectureCode) {
+        try {
+           return lectureServiceClient.getLectureByLectureCode(lectureCode).toLecture();
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
+        }
+    }
+}
