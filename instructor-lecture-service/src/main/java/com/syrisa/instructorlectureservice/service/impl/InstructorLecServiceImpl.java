@@ -3,6 +3,7 @@ package com.syrisa.instructorlectureservice.service.impl;
 import com.syrisa.instructorlectureservice.entity.impl.InstructorLec;
 import com.syrisa.instructorlectureservice.repository.InstructorLecRepository;
 import com.syrisa.instructorlectureservice.service.InstructorLecService;
+import com.syrisa.instructorlectureservice.utilities.checkobject.PreCondition;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -49,8 +50,8 @@ public class InstructorLecServiceImpl implements InstructorLecService {
     @Override
     public InstructorLec create(InstructorLec instructorLec) {
         try {
-
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            PreCondition.checkNull(instructorLec);
+            return instructorLecRepository.save(instructorLec);
         } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
