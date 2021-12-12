@@ -8,6 +8,7 @@ import com.syrisa.studentservice.repository.AddressRepository;
 import com.syrisa.studentservice.repository.StudentRepository;
 import com.syrisa.studentservice.service.StudentService;
 import io.vavr.collection.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -20,16 +21,11 @@ import java.util.Locale;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
+@RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
     private final AddressRepository addressRepository;
     private final GenerateProcessClient generateProcessClient;
-
-    public StudentServiceImpl(StudentRepository studentRepository, AddressRepository addressRepository, GenerateProcessClient generateProcessClient) {
-        this.studentRepository = studentRepository;
-        this.addressRepository = addressRepository;
-        this.generateProcessClient = generateProcessClient;
-    }
 
     @Override
     public Student create(Student student) {

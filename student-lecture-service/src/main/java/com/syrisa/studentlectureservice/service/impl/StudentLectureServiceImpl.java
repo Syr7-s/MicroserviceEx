@@ -26,7 +26,6 @@ public class StudentLectureServiceImpl implements StudentLectureService {
     private final StudentLectureRepository studentLectureRepository;
     private final InstructorLecServiceClient instructorLecServiceClient;
 
-
     @Override
     public StudentLecture create(StudentLecture studentLecture) {
         try {

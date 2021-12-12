@@ -5,7 +5,7 @@ import com.syrisa.lectureservice.entity.Lecture;
 import com.syrisa.lectureservice.exceptions.LectureNotNullException;
 import com.syrisa.lectureservice.repository.LectureRepository;
 import com.syrisa.lectureservice.service.LectureService;
-import io.vavr.collection.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -14,16 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
+@RequiredArgsConstructor
 public class LectureServiceImpl implements LectureService<Lecture> {
-
     private final LectureRepository lectureRepository;
     private final GenerateProcessClient generateProcessClient;
-
-    public LectureServiceImpl(LectureRepository lectureRepository, GenerateProcessClient generateProcessClient) {
-        this.lectureRepository = lectureRepository;
-        this.generateProcessClient = generateProcessClient;
-    }
 
     @Override
     public Lecture create(Lecture lecture) {

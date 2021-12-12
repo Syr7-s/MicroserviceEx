@@ -8,6 +8,7 @@ import com.syrisa.instructorservice.repository.AddressRepository;
 import com.syrisa.instructorservice.repository.InstructorRepository;
 import com.syrisa.instructorservice.service.InstructorService;
 import io.vavr.collection.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -16,17 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
+@RequiredArgsConstructor
 public class InstructorServiceImpl implements InstructorService {
     private final InstructorRepository instructorRepository;
     private final AddressRepository addressRepository;
     private final GenerateProcessClient generateProcessClient;
-
-    public InstructorServiceImpl(InstructorRepository instructorRepository, AddressRepository addressRepository, GenerateProcessClient generateProcessClient) {
-        this.instructorRepository = instructorRepository;
-        this.addressRepository = addressRepository;
-        this.generateProcessClient = generateProcessClient;
-    }
 
     @Override
     public Instructor create(Instructor instructor) {

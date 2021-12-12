@@ -3,6 +3,7 @@ package com.syrisa.studentservice.controller;
 import com.syrisa.studentservice.dto.StudentDto;
 import com.syrisa.studentservice.entity.Student;
 import com.syrisa.studentservice.service.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +15,9 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/student")
+@RequiredArgsConstructor
 public class StudentController {
     private final StudentService studentService;
-
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
 
     @PostMapping("/create")
     public StudentDto create(@RequestBody StudentDto studentDto){

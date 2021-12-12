@@ -4,6 +4,7 @@ import com.syrisa.instructorlectureservice.entity.impl.InstructorLec;
 import com.syrisa.instructorlectureservice.repository.InstructorLecRepository;
 import com.syrisa.instructorlectureservice.service.InstructorLecService;
 import com.syrisa.instructorlectureservice.utilities.checkobject.PreCondition;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -15,16 +16,10 @@ import java.util.function.BiFunction;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
+@RequiredArgsConstructor
 public class InstructorLecServiceImpl implements InstructorLecService {
 
     private final InstructorLecRepository instructorLecRepository;
-
-
-    public InstructorLecServiceImpl(InstructorLecRepository instructorLecRepository) {
-
-        this.instructorLecRepository = instructorLecRepository;
-
-    }
 
     @Override
     public InstructorLec getByID(Long id) {

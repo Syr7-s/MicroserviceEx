@@ -3,6 +3,7 @@ package com.syrisa.lectureservice.controller;
 import com.syrisa.lectureservice.dto.LectureDto;
 import com.syrisa.lectureservice.entity.Lecture;
 import com.syrisa.lectureservice.service.LectureService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +15,9 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1")
+@RequiredArgsConstructor
 public class LectureController {
     private final LectureService<Lecture> lectureService;
-
-    public LectureController(LectureService<Lecture> lectureService) {
-        this.lectureService = lectureService;
-    }
 
     @PostMapping("/lecture")
     public LectureDto create(@RequestBody LectureDto lectureDto){
