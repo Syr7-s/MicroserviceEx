@@ -5,8 +5,10 @@ import com.syrisa.instructorlectureservice.dto.InstructorLecDto;
 import com.syrisa.instructorlectureservice.entity.Entity;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.couchbase.core.mapping.Document;
+import org.springframework.data.couchbase.core.mapping.Field;
 
 
 import java.time.LocalDate;
@@ -21,6 +23,8 @@ public class InstructorLec implements Entity {
     private String instructorID;
     private String instructorNameSurname;
     private int studentCapacity;
+    @Field(value = "0")
+    private int studentCount;
     private LocalDate openDate;
 
     public InstructorLecDto toInstructorLecDto(){

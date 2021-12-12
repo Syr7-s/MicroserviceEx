@@ -9,4 +9,6 @@ public interface InstructorLecService extends Service<InstructorLec> {
     InstructorLec getByLectureCode(String lectureCode);
 
     String delete(Long id);
+
+    InstructorLec addStudent(Long instructorLecID);
 }

@@ -16,6 +16,7 @@ public class InstructorLecDto {
     private String instructorID;
     private String instructorNameSurname;
     private int studentCapacity;
+    private int studentCount;
     private LocalDate openDate;
     public InstructorLec toInstructorLec(){
         return  InstructorLec.builder()
@@ -24,6 +25,7 @@ public class InstructorLecDto {
                 .instructorID(this.instructorID)
                 .instructorNameSurname(this.instructorNameSurname)
                 .studentCapacity(this.studentCapacity)
+                .studentCount(this.studentCount)
                 .openDate(this.openDate)
                 .build();
     }

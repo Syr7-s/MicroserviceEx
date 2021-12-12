@@ -16,6 +16,7 @@ public class InstructorLec implements Entity {
     private String instructorID;
     private String instructorNameSurname;
     private int studentCapacity;
+    private int studentCount;
     private LocalDate openDate;
 
     public InstructorLecDto toInstructorLecDto(){
@@ -25,6 +26,7 @@ public class InstructorLec implements Entity {
                 .instructorID(this.instructorID)
                 .instructorNameSurname(this.instructorNameSurname)
                 .studentCapacity(this.studentCapacity)
+                .studentCount(this.studentCount)
                 .openDate(this.openDate)
                 .build();
     }

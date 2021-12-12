@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.function.BiFunction;
 
 @Service
@@ -48,9 +49,25 @@ public class InstructorLecServiceImpl implements InstructorLecService {
     }
 
     @Override
+    public InstructorLec addStudent(Long instructorLecID) {
+        try {
+            InstructorLec editedInstructor = getByID(instructorLecID);
+            if (checkStudentCapacity.apply(editedInstructor.getStudentCapacity(),editedInstructor.getStudentCount())){
+                editedInstructor.setStudentCapacity(editedInstructor.getStudentCapacity() + 1);
+                return instructorLecRepository.save(editedInstructor);
+            }
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,editedInstructor.getInstructorNameSurname()+" named instructor lecture is fulled");
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        }
+    }
+
+    @Override
     public InstructorLec create(InstructorLec instructorLec) {
         try {
             PreCondition.checkNull(instructorLec);
+            if (instructorLec.getStudentCapacity()==0)
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Please this field should not 0");
             return instructorLecRepository.save(instructorLec);
         } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());

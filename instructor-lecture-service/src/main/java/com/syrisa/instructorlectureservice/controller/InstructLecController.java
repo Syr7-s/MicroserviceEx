@@ -24,4 +24,13 @@ public class InstructLecController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
         }
     }
+
+    @PutMapping("/add/students/{instructorLecID}")
+    public InstructorLecDto addStudent(@PathVariable("instructorLecID") Long instructorLecID){
+        try{
+            return instructorLecService.addStudent(instructorLecID).toInstructorLecDto();
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        }
+    }
 }
