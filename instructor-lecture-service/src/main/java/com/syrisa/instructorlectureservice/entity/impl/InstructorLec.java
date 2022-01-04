@@ -21,7 +21,7 @@ public class InstructorLec implements Entity {
     @Id
     private Long instructorLecID;
     private String lectureCode;
-    private String instructorID;
+    private Long instructorID;
     private String instructorNameSurname;
     @Min(value = 10, message = "Student capacity should not be lower than 10.")
     @Max(value = 50, message = "Student capacity should not exceed 30")

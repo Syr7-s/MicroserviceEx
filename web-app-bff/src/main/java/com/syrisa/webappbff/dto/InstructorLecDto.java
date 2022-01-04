@@ -14,7 +14,7 @@ public class InstructorLecDto {
     @Id
     private Long instructorLecID;
     private String lectureCode;
-    private String instructorID;
+    private Long instructorID;
     private String instructorNameSurname;
     private int studentCapacity;
     private int studentCount;
