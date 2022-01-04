@@ -60,8 +60,18 @@ public class LectureServiceImpl implements LectureService<Lecture> {
     }
 
     @Override
-    public String delete(Long id) {
-        return null;
+    public String delete(Integer id) {
+        try{
+            Lecture lecture = getByID(id);
+            if (lecture!=null){
+                lectureRepository.delete(lecture);
+                return lecture.getLectureCode()+" code lecture was removed";
+            }
+            return lecture.getLectureName()+" named lecture was not removed";
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        }
+
     }
 
     @Override

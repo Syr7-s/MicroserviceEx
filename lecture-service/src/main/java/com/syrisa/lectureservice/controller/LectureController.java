@@ -28,6 +28,15 @@ public class LectureController {
         }
     }
 
+    @PutMapping("lecture/update")
+    public LectureDto update(@RequestBody LectureDto lectureDto){
+        try {
+            return lectureService.update(lectureDto.toLecture()).toLectureDto();
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        }
+    }
+
     @GetMapping("/lecture/{lectureCode}")
     public LectureDto getLectureByLectureCode(@PathVariable("lectureCode") String lectureCode){
         try{
@@ -43,5 +52,23 @@ public class LectureController {
                 .stream()
                 .map(Lecture::toLectureDto)
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/lecture/id/{lectureID}")
+    public LectureDto getByID(@PathVariable("lectureID") Integer lectureID){
+        try{
+            return lectureService.getByID(lectureID).toLectureDto();
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        }
+    }
+
+    @DeleteMapping("/lecture/undo/{lectureID}")
+    public String delete(@PathVariable("lectureID") Integer lectureID){
+        try{
+            return lectureService.delete(lectureID);
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        }
     }
 }

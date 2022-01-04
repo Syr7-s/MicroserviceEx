@@ -4,10 +4,9 @@ import com.syrisa.studentservice.client.GenerateProcessClient;
 import com.syrisa.studentservice.entity.Address;
 import com.syrisa.studentservice.entity.Student;
 import com.syrisa.studentservice.exception.StudentNotNullException;
-import com.syrisa.studentservice.repository.AddressRepository;
-import com.syrisa.studentservice.repository.StudentRepository;
+import com.syrisa.studentservice.mapper.repository.AddressRepository;
+import com.syrisa.studentservice.mapper.repository.StudentRepository;
 import com.syrisa.studentservice.service.StudentService;
-import io.vavr.collection.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
-import java.util.Locale;
 
 @Service
 @Transactional(rollbackFor = Exception.class)

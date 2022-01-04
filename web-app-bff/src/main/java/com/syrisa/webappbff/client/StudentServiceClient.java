@@ -22,8 +22,6 @@ public interface StudentServiceClient {
     @GetMapping("/api/v1/student/studentNumber/{studentNumber}")
     StudentDto getByStudentNumber(@PathVariable("studentNumber") Long studentNumber);
 
-
-
     @DeleteMapping("/api/v1/student/undo/{id}")
     String delete(@PathVariable("id") Long id);
 

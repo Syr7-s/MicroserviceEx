@@ -9,6 +9,6 @@ public interface LectureService <T>{
     T update(T t);
     T getByID(Integer id);
     Page<T> getAll(Pageable pageable);
-    String delete(Long id);
+    String delete(Integer id);
     T getLectureByLectureCode(String lectureCode);
 }

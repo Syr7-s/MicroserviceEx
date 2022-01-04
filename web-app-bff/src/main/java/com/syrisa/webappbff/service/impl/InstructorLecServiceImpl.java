@@ -25,7 +25,7 @@ public class InstructorLecServiceImpl implements InstructorLecService {
     private final InstructorLecServiceClient instructorLecServiceClient;
     private final LectureService lectureService;
     private final InstructorService instructorService;
-    
+
 
     @Override
     public InstructorLec getByLectureCode(String lectureCode) {

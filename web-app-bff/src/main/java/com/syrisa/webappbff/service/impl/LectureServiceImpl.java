@@ -35,8 +35,7 @@ public class LectureServiceImpl implements LectureService {
     @Override
     public Lecture update(Lecture lecture) {
         try {
-
-            throw new Exception("Not found");
+          return lectureServiceClient.update(lecture.toLectureDto()).toLecture();
         } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
@@ -44,12 +43,20 @@ public class LectureServiceImpl implements LectureService {
 
     @Override
     public String delete(Integer id) {
-        return null;
+        try{
+            return lectureServiceClient.delete(id);
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        }
     }
 
     @Override
     public Lecture getById(Integer id) {
-        return null;
+        try{
+            return lectureServiceClient.getByID(id).toLecture();
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        }
     }
 
 
