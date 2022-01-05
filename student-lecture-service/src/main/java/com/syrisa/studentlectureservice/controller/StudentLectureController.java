@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/studentLecture")
+@RequestMapping("/api/v1/student-lec")
 public class StudentLectureController {
 
     private final StudentLectureService studentLectureService;
@@ -37,7 +37,7 @@ public class StudentLectureController {
         }
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public StudentLectureDto getByID(@PathVariable("id") Long id){
         try{
             return studentLectureService.getByID(id).toStudentLectureDto();
@@ -54,7 +54,7 @@ public class StudentLectureController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/studentNum/{studentNumber}")
+    @GetMapping("/studentNumber/{studentNumber}")
     public StudentLectureDto findStudentLectureByStudentNumber(@PathVariable("studentNumber") Long studentNumber){
         try{
             return studentLectureService.findStudentLectureByStudentNumber(studentNumber).toStudentLectureDto();
@@ -63,7 +63,7 @@ public class StudentLectureController {
         }
     }
 
-    @DeleteMapping("/undo/id")
+    @DeleteMapping("/del/{id}")
     public String delete(@PathVariable("id") Long id){
         try{
             return studentLectureService.delete(id);
