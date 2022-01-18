@@ -5,6 +5,7 @@ import com.syrisa.webappbff.client.InstructorServiceClient;
 import com.syrisa.webappbff.dto.InstructorDto;
 import com.syrisa.webappbff.entity.Instructor;
 import com.syrisa.webappbff.service.InstructorService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,13 +15,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-
+@RequiredArgsConstructor
 public class InstructorServiceImpl implements InstructorService {
     private final InstructorServiceClient instructorServiceClient;
-
-    public InstructorServiceImpl(InstructorServiceClient instructorServiceClient) {
-        this.instructorServiceClient = instructorServiceClient;
-    }
+    
 
     @Override
     public Instructor create(Instructor instructor) {
