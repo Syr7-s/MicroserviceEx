@@ -49,7 +49,11 @@ public class StudentLectureServiceImpl implements StudentLectureService {
 
     @Override
     public StudentLecture update(StudentLecture studentLecture) {
-        return null;
+        try{
+            throw new Exception("Update process not ready yet");
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        }
     }
 
     @Override
@@ -64,7 +68,7 @@ public class StudentLectureServiceImpl implements StudentLectureService {
 
     @Override
     public String delete(Long id) {
-        return null;
+        return "Not ready yet";
     }
 
     @Override
