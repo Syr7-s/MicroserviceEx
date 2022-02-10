@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 public class InstructorServiceImpl implements InstructorService {
     private final InstructorServiceClient instructorServiceClient;
 
-
     @Override
     public Instructor create(Instructor instructor) {
         try {

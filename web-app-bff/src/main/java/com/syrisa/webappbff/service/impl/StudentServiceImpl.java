@@ -3,17 +3,16 @@ package com.syrisa.webappbff.service.impl;
 import com.syrisa.webappbff.client.StudentServiceClient;
 import com.syrisa.webappbff.entity.Student;
 import com.syrisa.webappbff.service.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
+@RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
     private final StudentServiceClient studentServiceClient;
 
-    public StudentServiceImpl(StudentServiceClient studentServiceClient) {
-        this.studentServiceClient = studentServiceClient;
-    }
 
     @Override
     public Student create(Student student) {
