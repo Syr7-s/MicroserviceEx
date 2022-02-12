@@ -93,6 +93,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>student-lecture-service</finalName>
     </build>
 
 </project>
