@@ -19,43 +19,43 @@ public class InstructorLecController {
     private final InstructorLecService instructorLecService;
 
     @PostMapping("/create")
-    public InstructorLecDto create(@RequestBody InstructorLecDto instructorLecDto){
-        try{
+    public InstructorLecDto create(@RequestBody InstructorLecDto instructorLecDto) {
+        try {
             return instructorLecService.create(instructorLecDto.toInstructorLec()).toInstructorLecDto();
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
     @PutMapping("/update")
-    public InstructorLecDto update(@RequestBody InstructorLecDto instructorLecDto){
-        try{
+    public InstructorLecDto update(@RequestBody InstructorLecDto instructorLecDto) {
+        try {
             return instructorLecService.update(instructorLecDto.toInstructorLec()).toInstructorLecDto();
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
     @GetMapping("/get/{id}")
-    public InstructorLecDto getByID(@PathVariable("id") Long id){
-        try{
+    public InstructorLecDto getByID(@PathVariable("id") Long id) {
+        try {
             return instructorLecService.getById(id).toInstructorLecDto();
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
     @GetMapping("/lecture/{lectureCode}")
-    public InstructorLecDto getLectureCode(@PathVariable("lectureCode") String lectureCode){
-        try{
+    public InstructorLecDto getLectureCode(@PathVariable("lectureCode") String lectureCode) {
+        try {
             return instructorLecService.getByLectureCode(lectureCode).toInstructorLecDto();
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
-    @GetMapping(value = "/all",params = {"page", "size"})
-    public List<InstructorLecDto> getAll(@Min(0) int page, @Min(1) int size){
+    @GetMapping(value = "/all", params = {"page", "size"})
+    public List<InstructorLecDto> getAll(@Min(0) int page, @Min(1) int size) {
         return instructorLecService.getAll(page, size)
                 .stream()
                 .map(InstructorLec::toInstructorLecDto)
@@ -63,11 +63,11 @@ public class InstructorLecController {
     }
 
     @DeleteMapping("/undo/{id}")
-    public String delete(@PathVariable("id") Long id){
-        try{
+    public String delete(@PathVariable("id") Long id) {
+        try {
             return instructorLecService.delete(id);
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 }

@@ -2,17 +2,16 @@ package com.syrisa.webappbff.service.impl;
 
 import com.syrisa.webappbff.client.InstructorLecServiceClient;
 import com.syrisa.webappbff.dto.InstructorLecDto;
-import com.syrisa.webappbff.entity.Entity;
-import com.syrisa.webappbff.entity.Instructor;
-import com.syrisa.webappbff.entity.InstructorLec;
-import com.syrisa.webappbff.entity.Lecture;
+import com.syrisa.webappbff.entity.*;
 import com.syrisa.webappbff.service.InstructorLecService;
 import com.syrisa.webappbff.service.InstructorService;
 import com.syrisa.webappbff.service.LectureService;
+import com.syrisa.webappbff.utility.checkObject.ObjectContainerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -29,9 +28,9 @@ public class InstructorLecServiceImpl implements InstructorLecService {
 
     @Override
     public InstructorLec getByLectureCode(String lectureCode) {
-        try{
+        try {
             return instructorLecServiceClient.getLectureCode(lectureCode).toInstructorLec();
-        }catch (Exception exception){
+        } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
@@ -53,9 +52,9 @@ public class InstructorLecServiceImpl implements InstructorLecService {
 
     @Override
     public InstructorLec getById(Long id) {
-        try{
+        try {
             return instructorLecServiceClient.getByID(id).toInstructorLec();
-        }catch (Exception exception){
+        } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
@@ -65,7 +64,7 @@ public class InstructorLecServiceImpl implements InstructorLecService {
         try {
             Lecture lecture = lectureService.getLectureByLectureCode(instructorLec.getLectureCode());
             Instructor instructor = instructorService.getById(instructorLec.getInstructorID());
-            if (isNull.test(lecture) && isNull.test(instructor)){
+            if (new ObjectContainerService<Lecture>().isNull.test(lecture) && new ObjectContainerService<Instructor>().isNull.test(instructor)) {
                 return instructorLecServiceClient.create(instructorLec.toInstructorLecDto()).toInstructorLec();
             }
             throw new Exception("Lecture or Instructor is null");
@@ -83,8 +82,6 @@ public class InstructorLecServiceImpl implements InstructorLecService {
         }
 
     }
-
-    private static final Predicate<Entity> isNull = (Objects::nonNull);
 
 
 }

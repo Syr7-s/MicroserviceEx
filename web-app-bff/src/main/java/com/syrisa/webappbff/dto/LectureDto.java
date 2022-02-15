@@ -12,7 +12,7 @@ public class LectureDto {
     private String lectureCode;
     private String lectureName;
 
-    public Lecture toLecture(){
+    public Lecture toLecture() {
         return Lecture.builder().
                 lectureID(this.lectureID)
                 .lectureCode(this.lectureCode)

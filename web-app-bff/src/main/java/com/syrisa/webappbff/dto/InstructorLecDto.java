@@ -21,8 +21,8 @@ public class InstructorLecDto {
     private LocalDate openDate;
 
 
-    public InstructorLec toInstructorLec(){
-        return  InstructorLec.builder()
+    public InstructorLec toInstructorLec() {
+        return InstructorLec.builder()
                 .instructorLecID(this.instructorLecID)
                 .lectureCode(this.lectureCode)
                 .instructorID(this.instructorID)

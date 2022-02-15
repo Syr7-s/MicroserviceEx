@@ -22,49 +22,48 @@ public class StudentController {
     }
 
     @PostMapping("/create")
-    public StudentDto create(@RequestBody StudentDto studentDto){
-        try{
+    public StudentDto create(@RequestBody StudentDto studentDto) {
+        try {
             return studentService.create(studentDto.toStudent()).toStudentDto();
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
     @PutMapping("/edit")
-    public StudentDto update(@RequestBody StudentDto studentDto){
+    public StudentDto update(@RequestBody StudentDto studentDto) {
         try {
             return studentService.update(studentDto.toStudent()).toStudentDto();
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
     @GetMapping("/id/{id}")
-    public StudentDto getByID(@PathVariable("id") Long id){
+    public StudentDto getByID(@PathVariable("id") Long id) {
         try {
             return studentService.getById(id).toStudentDto();
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
 
-
     @DeleteMapping("/undo/{id}")
-    public String delete(@PathVariable("id") Long id){
-        try{
+    public String delete(@PathVariable("id") Long id) {
+        try {
             return studentService.delete(id);
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
     @GetMapping("/studentNumber/{studentNumber}")
-    public StudentDto getByStudentNumber(@PathVariable("studentNumber") Long studentNumber){
-        try{
+    public StudentDto getByStudentNumber(@PathVariable("studentNumber") Long studentNumber) {
+        try {
             return studentService.findByStudentNumber(studentNumber).toStudentDto();
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 

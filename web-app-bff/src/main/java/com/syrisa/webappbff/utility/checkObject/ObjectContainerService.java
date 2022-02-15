@@ -8,6 +8,6 @@ import java.util.function.Predicate;
 
 public class ObjectContainerService<T extends Entity> {
 
-   public Predicate<T> isNull = Objects::nonNull;
+    public Predicate<T> isNull = Objects::nonNull;
 
 }

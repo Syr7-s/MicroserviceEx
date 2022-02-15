@@ -22,26 +22,26 @@ public class LectureController {
     }
 
     @PostMapping("/lecture")
-    public LectureDto create(@RequestBody LectureDto lectureDto){
+    public LectureDto create(@RequestBody LectureDto lectureDto) {
         try {
             return lectureService.create(lectureDto.toLecture()).toLectureDto();
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
     @GetMapping("/lecture/{lectureCode}")
-    public LectureDto getLectureByLectureCode(@PathVariable("lectureCode") String lectureCode){
-        try{
+    public LectureDto getLectureByLectureCode(@PathVariable("lectureCode") String lectureCode) {
+        try {
             return lectureService.getLectureByLectureCode(lectureCode).toLectureDto();
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
     @GetMapping(value = "/books", params = {"page", "size"})
-    public List<LectureDto> getAllLecture(@Min(0) int page, @Min(1) int size){
-        return lectureService.getAll(page,size).stream()
+    public List<LectureDto> getAllLecture(@Min(0) int page, @Min(1) int size) {
+        return lectureService.getAll(page, size).stream()
                 .map(Lecture::toLectureDto)
                 .collect(Collectors.toList());
 

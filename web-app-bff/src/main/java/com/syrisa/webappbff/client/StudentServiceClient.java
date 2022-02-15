@@ -5,8 +5,6 @@ import com.syrisa.webappbff.entity.Student;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Min;
-import java.util.List;
 
 @FeignClient("student-service")
 public interface StudentServiceClient {

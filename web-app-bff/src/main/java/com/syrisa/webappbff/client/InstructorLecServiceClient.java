@@ -21,7 +21,7 @@ public interface InstructorLecServiceClient {
     @GetMapping("/api/v1/inscturctorLec/lectureCode/{lectureCode}")
     InstructorLecDto getLectureCode(@PathVariable("lectureCode") String lectureCode);
 
-    @GetMapping(value = "/api/v1/inscturctorLec/allReg",params = {"page", "size"})
+    @GetMapping(value = "/api/v1/inscturctorLec/allReg", params = {"page", "size"})
     List<InstructorLecDto> getAll(@Min(0) int page, @Min(1) int size);
 
     @DeleteMapping("/api/v/inscturctorLec/undo/{id}")

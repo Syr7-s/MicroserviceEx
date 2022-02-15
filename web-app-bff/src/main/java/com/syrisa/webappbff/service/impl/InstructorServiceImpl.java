@@ -32,7 +32,7 @@ public class InstructorServiceImpl implements InstructorService {
     @Override
     public Instructor update(Instructor instructor) {
         try {
-           return instructorServiceClient.update(instructor.toInstructorDto()).toInstructor();
+            return instructorServiceClient.update(instructor.toInstructorDto()).toInstructor();
         } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
@@ -46,7 +46,6 @@ public class InstructorServiceImpl implements InstructorService {
                 .map(InstructorDto::toInstructor)
                 .collect(Collectors.toList());
     }
-
 
 
     @Override

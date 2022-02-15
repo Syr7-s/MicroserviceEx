@@ -23,7 +23,7 @@ public class StudentLecture implements Entity {
     private String studentNameAndSurname;
     private List<InstructorLec> studentLectures;
 
-    public StudentLectureDto toStudentLectureDto(){
+    public StudentLectureDto toStudentLectureDto() {
         return StudentLectureDto.builder()
                 .studentLecID(this.studentLecID)
                 .lastUpdated(this.lastUpdated)

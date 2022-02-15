@@ -19,7 +19,7 @@ public class Instructor implements Entity {
     private LocalDate instructorBirthDate;
     private Address address;
 
-    public InstructorDto toInstructorDto(){
+    public InstructorDto toInstructorDto() {
         return InstructorDto.builder()
                 .instructorID(this.instructorID)
                 .instructorName(this.instructorName)

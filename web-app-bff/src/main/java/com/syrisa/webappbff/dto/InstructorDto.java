@@ -21,7 +21,7 @@ public class InstructorDto {
     private LocalDate instructorBirthDate;
     private Address address;
 
-    public Instructor toInstructor(){
+    public Instructor toInstructor() {
         return Instructor.builder()
                 .instructorID(this.instructorID)
                 .instructorName(this.instructorName)

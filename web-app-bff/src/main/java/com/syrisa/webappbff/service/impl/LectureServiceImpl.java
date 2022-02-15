@@ -33,7 +33,7 @@ public class LectureServiceImpl implements LectureService {
     @Override
     public Lecture update(Lecture lecture) {
         try {
-          return lectureServiceClient.update(lecture.toLectureDto()).toLecture();
+            return lectureServiceClient.update(lecture.toLectureDto()).toLecture();
         } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
@@ -41,27 +41,26 @@ public class LectureServiceImpl implements LectureService {
 
     @Override
     public String delete(Integer id) {
-        try{
+        try {
             return lectureServiceClient.delete(id);
-        }catch (Exception exception){
+        } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
     @Override
     public Lecture getById(Integer id) {
-        try{
+        try {
             return lectureServiceClient.getByID(id).toLecture();
-        }catch (Exception exception){
+        } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
 
-
     @Override
     public List<Lecture> getAll(int min, int max) {
-        return lectureServiceClient.getAllLecture(min,max).stream()
+        return lectureServiceClient.getAllLecture(min, max).stream()
                 .map(LectureDto::toLecture)
                 .collect(Collectors.toList());
     }
@@ -70,7 +69,7 @@ public class LectureServiceImpl implements LectureService {
     @Override
     public Lecture getLectureByLectureCode(String lectureCode) {
         try {
-           return lectureServiceClient.getLectureByLectureCode(lectureCode).toLecture();
+            return lectureServiceClient.getLectureByLectureCode(lectureCode).toLecture();
         } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
         }

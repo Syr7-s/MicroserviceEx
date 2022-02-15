@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 @RequestMapping("/api/v1")
 public class HomeController {
     @GetMapping("/home")
-    public String welcome(){
+    public String welcome() {
         return "Welcome";
     }
 

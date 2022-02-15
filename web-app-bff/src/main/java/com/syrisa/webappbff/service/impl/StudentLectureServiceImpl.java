@@ -22,19 +22,19 @@ public class StudentLectureServiceImpl implements StudentLectureService {
     @Override
     public StudentLecture create(StudentLecture studentLecture) {
         Student student = studentService.findByStudentNumber(studentLecture.getStudentNumber());
-        if (new ObjectContainerService<Student>().isNull.test(student)){
+        if (new ObjectContainerService<Student>().isNull.test(student)) {
             return studentLectureServiceClient.create(studentLecture.toStudentLectureDto()).toStudentLecture();
         }
-        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"Student not found");
+        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found");
     }
 
     @Override
     public StudentLecture update(StudentLecture studentLecture) {
         Student student = studentService.findByStudentNumber(studentLecture.getStudentNumber());
-        if (new ObjectContainerService<Student>().isNull.test(student)){
+        if (new ObjectContainerService<Student>().isNull.test(student)) {
             return studentLectureServiceClient.update(studentLecture.toStudentLectureDto()).toStudentLecture();
         }
-        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"Student not found");
+        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found");
     }
 
     @Override

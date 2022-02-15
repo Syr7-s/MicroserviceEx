@@ -19,8 +19,8 @@ public class InstructorLec implements Entity {
     private int studentCount;
     private LocalDate openDate;
 
-    public InstructorLecDto toInstructorLecDto(){
-        return  InstructorLecDto.builder()
+    public InstructorLecDto toInstructorLecDto() {
+        return InstructorLecDto.builder()
                 .instructorLecID(this.instructorLecID)
                 .lectureCode(this.lectureCode)
                 .instructorID(this.instructorID)

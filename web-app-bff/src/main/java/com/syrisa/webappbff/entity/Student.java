@@ -26,7 +26,7 @@ public class Student implements Entity {
     private LocalDate studentBirthDate;
     private Address address;
 
-    public StudentDto toStudentDto(){
+    public StudentDto toStudentDto() {
         return StudentDto.builder()
                 .studentID(this.studentID)
                 .studentNumber(this.studentNumber)

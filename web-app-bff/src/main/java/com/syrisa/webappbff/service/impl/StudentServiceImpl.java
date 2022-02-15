@@ -16,48 +16,48 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student create(Student student) {
-        try{
+        try {
             return studentServiceClient.create(student.toStudentDto()).toStudent();
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
 
     }
 
     @Override
     public Student update(Student student) {
-        try{
+        try {
             return studentServiceClient.update(student.toStudentDto()).toStudent();
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
     @Override
     public String delete(Long id) {
-        try{
+        try {
             return studentServiceClient.delete(id);
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
     @Override
     public Student getById(Long id) {
-        try{
+        try {
             return studentServiceClient.getByID(id);
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 
 
     @Override
     public Student findByStudentNumber(Long studentNumber) {
-        try{
+        try {
             return studentServiceClient.getByStudentNumber(studentNumber).toStudent();
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        } catch (Exception exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.syrisa.webappbff.dto;
 
 
-
 import com.syrisa.webappbff.Gender.Gender;
 import com.syrisa.webappbff.entity.Address;
 import com.syrisa.webappbff.entity.Student;
@@ -21,7 +20,7 @@ public class StudentDto {
     private LocalDate studentBirthDate;
     private Address address;
 
-    public Student toStudent(){
+    public Student toStudent() {
         return Student.builder()
                 .studentID(this.studentID)
                 .studentNumber(this.studentNumber)

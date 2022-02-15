@@ -4,8 +4,8 @@ import com.syrisa.webappbff.entity.InstructorLec;
 
 import java.util.List;
 
-public interface InstructorLecService extends Service<InstructorLec,Long> {
+public interface InstructorLecService extends Service<InstructorLec, Long> {
     InstructorLec getByLectureCode(String lectureCode);
 
-    List<InstructorLec> getAll(int page,int size);
+    List<InstructorLec> getAll(int page, int size);
 }

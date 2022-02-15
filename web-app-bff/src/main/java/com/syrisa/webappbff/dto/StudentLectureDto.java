@@ -22,7 +22,7 @@ public class StudentLectureDto {
     private String studentNameAndSurname;
     private List<InstructorLec> studentLectures;
 
-    public StudentLecture toStudentLecture(){
+    public StudentLecture toStudentLecture() {
         return StudentLecture.builder()
                 .studentLecID(this.studentLecID)
                 .lastUpdated(this.lastUpdated)
