@@ -25,9 +25,6 @@ services:
       - '27017:27017'
     volumes:
       - db-data-no-sql:/var/lib/mongodb
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
   student-service:
     image: student-service:v1
     depends_on:
