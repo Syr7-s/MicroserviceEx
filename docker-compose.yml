@@ -1,0 +1,43 @@
+
+version: '3.8'
+services:
+  service-registry:
+    image: service-registry:v1
+    hostname: eureka-server
+    ports:
+      - '8761:8761'
+    networks:
+      - micro-net
+  generate-service:
+    image: generate-service:v1
+    ports:
+      - '8100:8100'
+    depends_on: 
+      - service-registry
+    networks:
+      - micro-net
+    environment:
+      - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka"
+      - "SPRING_PROFILES_ACTIVE=eureka"
+  mongo:
+    image: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - db-data-no-sql:/var/lib/mongodb
+  student-service:
+    image: student-service:v1
+    depends_on:
+      - mongo
+    ports:
+      - '8090:8090'
+    networks:
+      - micro-net
+    environment:
+      - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka"
+      - "SPRING_PROFILES_ACTIVE=eureka"
+volumes:
+  db-data-no-sql:
+networks:
+  micro-net:
+    driver: overlay

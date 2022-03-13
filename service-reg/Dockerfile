@@ -7,7 +7,7 @@ FROM openjdk:8-alpine
 LABEL "Isa SAYAR"="isa.sayar1725@gmail.com"
 COPY --from=build /usr/src/app/target/service-registry.jar /usr/app/service-registry.jar
 EXPOSE 8761
-ENTRYPOINT ["java","-jar","/usr/app/spring-registry.jar"]
+ENTRYPOINT ["java","-jar","/usr/app/service-registry.jar"]
 
 #FROM openjdk:8
 #MAINTAINER Isa SAYAR <isa.sayar.1725@gmail.com>
